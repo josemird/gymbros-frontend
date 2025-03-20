@@ -37,7 +37,7 @@ Gymbros está desarrollado con:
 │   ├── 📄 package.json
 │   ├── 📄 README.md
 └── 📄 README.md (Este archivo)
-
+```
 
 # Frontend
 
