@@ -1,3 +1,44 @@
+# 🏋️‍♂️ Gymbros - Encuentra tu compañero ideal de gimnasio  
+
+## 🚀 ¿Qué es Gymbros?  
+Gymbros es una plataforma web que te ayuda a encontrar compañeros de entrenamiento ideales según tus preferencias. Con Gymbros puedes:  
+
+✅ Buscar personas según gimnasio, edad y ejercicios favoritos.  
+✅ Guardar perfiles con "Like" para revisarlos más tarde.  
+✅ Chatear con otros usuarios para coordinar entrenamientos.  
+✅ Personalizar tu perfil con información relevante.  
+
+## 🛠️ Tecnologías utilizadas  
+Gymbros está desarrollado con:  
+
+### **Frontend:**  
+- 🔥 **Angular** (Framework para el frontend)  
+- 🎨 **Sass/SCSS** (Diseño responsive y estilizado)  
+
+### **Infraestructura:**  
+- 🚀 **Vercel** (Para alojar el frontend de Angular)  
+
+## 📌 Funcionalidades principales  
+- **🔐 Autenticación:** Registro y login con email y contraseña.  
+- **🏠 Home:** Lista de usuarios con filtros de búsqueda.  
+- **❤️ Likes:** Guarda perfiles que te interesan.  
+- **💬 Mensajes:** Chatea con otros usuarios.  
+- **👤 Perfil:** Personaliza tu información.  
+
+## 📂 Estructura del Proyecto  
+```bash
+📦 gymbros
+├── 📁 frontend (Angular)
+│   ├── 📁 src
+│   │   ├── 📁 app (Componentes y servicios)
+│   │   ├── 📁 assets (Imágenes y estilos)
+│   │   ├── 📄 environment.ts (Configuraciones de API)
+│   ├── 📄 angular.json
+│   ├── 📄 package.json
+│   ├── 📄 README.md
+└── 📄 README.md (Este archivo)
+```
+
 # Frontend
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
@@ -57,3 +98,4 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
