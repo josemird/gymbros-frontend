@@ -1,23 +1,31 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div>
-    <label>Nombre</label>
+    <label>Nombre </label>
     <input type="text" formControlName="name" />
   </div>
 
+  <br>
+
   <div>
-    <label>Nombre de usuario</label>
+    <label>Nombre de usuario </label>
     <input type="text" formControlName="username" />
   </div>
 
+  <br>
+
   <div>
-    <label>Email</label>
+    <label>Email </label>
     <input type="email" formControlName="email" />
   </div>
 
+  <br>
+
   <div>
-    <label>Contraseña</label>
+    <label>Contraseña </label>
     <input type="password" formControlName="password" />
   </div>
+
+  <br>
 
   <button type="submit" [disabled]="form.invalid">Registrarse</button>
 
