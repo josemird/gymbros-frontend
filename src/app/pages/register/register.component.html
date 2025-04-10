@@ -30,4 +30,10 @@
   <button type="submit" [disabled]="form.invalid">Registrarse</button>
 
   <p *ngIf="error">{{ error }}</p>
+
+  <p>
+    ¿Ya tienes cuenta?
+    <a routerLink="/login">Inicia sesión</a>
+  </p>
+
 </form>
