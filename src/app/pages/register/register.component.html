@@ -10,15 +10,11 @@
       <input type="text" formControlName="name" />
     </div>
 
-    <br>
-
     <div>
       <label>Nombre de usuario </label>
       <br>
       <input type="text" formControlName="username" />
     </div>
-
-    <br>
 
     <div>
       <label>Email </label>
@@ -26,21 +22,17 @@
       <input type="email" formControlName="email" />
     </div>
 
-    <br>
-
     <div>
       <label>Contraseña </label>
       <br>
       <input type="password" formControlName="password" />
     </div>
 
-    <br>
-
     <button type="submit" [disabled]="form.invalid">Registrarse</button>
 
     <p *ngIf="error">{{ error }}</p>
 
-    <br><br>
+    <br>
 
     <div class="link">
       ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>

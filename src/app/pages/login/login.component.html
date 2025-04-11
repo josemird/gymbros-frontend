@@ -10,21 +10,17 @@
       <input type="email" formControlName="email" />
     </div>
 
-    <br>
-
     <div>
       <label>Contraseña </label>
       <br>
       <input type="password" formControlName="password" />
     </div>
 
-    <br>
-
     <button type="submit" [disabled]="form.invalid">Entrar</button>
 
     <p *ngIf="error">{{ error }}</p>
 
-    <br><br>
+    <br>
 
     <div class="link">
       ¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a>
