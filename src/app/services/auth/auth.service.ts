@@ -41,11 +41,17 @@ export class AuthService {
   }
 
   getLoggedUser(): any {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('user');  // Recupera el usuario desde localStorage
     if (user) {
-      return JSON.parse(user);  // Si el usuario está guardado, lo parseamos y devolvemos
+      try {
+        return JSON.parse(user);  // Intenta parsear el usuario si está presente
+      } catch (error) {
+        console.error("Error al parsear el usuario:", error);  // Si hay un error en el parseo, lo mostramos
+        return null;  // En caso de error, devolvemos null
+      }
     }
-    return null;  // Si no existe, devolvemos null
+    return null;  // Si el usuario no existe en localStorage, devolvemos null
   }
+
 
 }

@@ -11,14 +11,18 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
+
   private userService = inject(UserService);
   private authService = inject(AuthService);
+
   users: any[] = [];
   loading = true;
   loggedUser: any = {};
+
  ngOnInit() {
 
     this.userService.getUsers().subscribe({
+
       next: (res) => {
         this.users = res.users;
         this.loading = false;
