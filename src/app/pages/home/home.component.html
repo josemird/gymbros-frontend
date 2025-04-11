@@ -1,26 +1,13 @@
-<div *ngIf="!loading && users.length > 0">
-  <div *ngFor="let user of users" class="user-card">
-    <img [src]="user.photo || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'" alt="Foto de perfil">
-    <h3>{{ user.name }}</h3>
-
-    <div class="info-columns">
-      <div class="column">
-        <p><strong>Usuario:</strong> {{ user.username }}</p>
-        <p><strong>Edad:</strong> {{ user.age || 'No indicada' }}</p>
-        <p><strong>Gimnasio:</strong> {{ user.gym || 'No indicado' }}</p>
-      </div>
-      <div class="column">
-        <p><strong>Hobbies:</strong> {{ user.hobbies || 'No indicado' }}</p>
-        <p><strong>Objetivos:</strong> {{ user.goals || 'No indicado' }}</p>
-        <p><strong>Ejercicios favoritos:</strong> {{ user.favorite_exercises || 'No indicado' }}</p>
-      </div>
+<div *ngIf="loading">Cargando usuarios...</div>
+<div *ngIf="!loading">
+  <div *ngFor="let user of users">
+    <div>
+      <p>Usuario: {{ user.username }}</p>
+      <p>Edad: {{ user.age || 'No indicada' }}</p>
+      <p>Gimnasio: {{ user.gym || 'No indicado' }}</p>
+      <!-- Aquí puedes añadir más campos como hobbies, objetivos, etc. -->
+      <button>Like</button>
+      <button>Mensaje</button>
     </div>
-
-
-    <div class="button-row">
-      <button class="like">❤️ Like</button>
-      <button class="message">💬 Mensaje</button>
-    </div>
-
   </div>
 </div>
