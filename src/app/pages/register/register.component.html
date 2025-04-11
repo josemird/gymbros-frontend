@@ -1,43 +1,46 @@
-<h1>GYMBROS</h1>
+<div class="auth-container">
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <label>Nombre </label>
-    <input type="text" formControlName="name" />
-  </div>
+  <h1>GYMBROS</h1>
 
-  <br>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label>Nombre </label>
+      <input type="text" formControlName="name" />
+    </div>
 
-  <div>
-    <label>Nombre de usuario </label>
-    <input type="text" formControlName="username" />
-  </div>
+    <br>
 
-  <br>
+    <div>
+      <label>Nombre de usuario </label>
+      <input type="text" formControlName="username" />
+    </div>
 
-  <div>
-    <label>Email </label>
-    <input type="email" formControlName="email" />
-  </div>
+    <br>
 
-  <br>
+    <div>
+      <label>Email </label>
+      <input type="email" formControlName="email" />
+    </div>
 
-  <div>
-    <label>Contraseña </label>
-    <input type="password" formControlName="password" />
-  </div>
+    <br>
 
-  <br>
+    <div>
+      <label>Contraseña </label>
+      <input type="password" formControlName="password" />
+    </div>
 
-  <button type="submit" [disabled]="form.invalid">Registrarse</button>
+    <br>
 
-  <p *ngIf="error">{{ error }}</p>
+    <button type="submit" [disabled]="form.invalid">Registrarse</button>
 
-  <br><br>
+    <p *ngIf="error">{{ error }}</p>
 
-  <div class="link">
-    ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
-  </div>
+    <br><br>
 
+    <div class="link">
+      ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
+    </div>
 
-</form>
+  </form>
+
+</div>
