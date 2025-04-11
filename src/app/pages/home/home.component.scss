@@ -82,6 +82,7 @@ div {
   .column {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.5rem;
     text-align: left;
     padding: 0 1rem;
@@ -94,6 +95,27 @@ div {
   }
 }
 
+.button-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  align-items: center;
+
+  button {
+    width: 150px;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: center;
+
+    button {
+      width: auto;
+    }
+  }
+}
 
 div[ngIf] {
   text-align: center;
