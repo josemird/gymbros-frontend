@@ -17,12 +17,10 @@ export class HomeComponent implements OnInit {
   loading = true;
   loggedUser: any = {};
  ngOnInit() {
-    this.loggedUser = this.authService.getLoggedUser(); // Obtener el usuario logueado desde el servicio de autenticación
-    console.log(this.loggedUser); // Verifica que el usuario logueado se está obteniendo correctamente
+
     this.userService.getUsers().subscribe({
       next: (res) => {
-        this.users = res.users !== this.loggedUser ? res.users : []; // Verifica que los usuarios se están obteniendo correctamente
-        this.users = this.users.filter((user) => user.id !== this.loggedUser.id); // Filtra el usuario logueado de la lista de usuarios
+        this.users = res.users;
         this.loading = false;
 
         console.log(this.users); // Verifica que los usuarios se están obteniendo correctamente
