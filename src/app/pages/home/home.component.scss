@@ -74,11 +74,11 @@ div {
 
 .info-columns {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  gap: 4rem;
   margin-top: 1rem;
+  flex-wrap: wrap;
+  text-align: left;
   width: 100%;
 
   .column {
@@ -118,6 +118,7 @@ div {
     }
   }
 }
+
 
 div[ngIf] {
   text-align: center;
