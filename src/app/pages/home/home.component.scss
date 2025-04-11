@@ -10,7 +10,8 @@
 div {
   width: 100%;
   max-width: 900px;
-  margin: 0 auto; // <- ¡Esto centra horizontalmente!
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .user-card {
@@ -76,21 +77,19 @@ div {
 .info-columns {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
+  gap: 4rem;
   margin-top: 1rem;
   flex-wrap: wrap;
+  align-items: center;
+  text-align: left;
   width: 100%;
 
   .column {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0.5rem;
-    text-align: left;
     padding: 0 1rem;
-    min-width: 200px;
-    max-width: 300px;
-    flex: 1 1 250px;
   }
 }
 
