@@ -12,12 +12,16 @@ import { UserService } from '../../services/user/user.service';
 export class HomeComponent implements OnInit {
   private userService = inject(UserService);
   users: any[] = [];
+  loggedUser: any = {};
   loading = true;
 
   ngOnInit() {
+
+    this.loggedUser = JSON.parse(localStorage.getItem('user') || '{}');
+
     this.userService.getUsers().subscribe({
       next: (res) => {
-        this.users = res.users;
+        this.users = res.users.filter((user: any) => user.id !== this.loggedUser.id);
         this.loading = false;
       },
       error: () => {
