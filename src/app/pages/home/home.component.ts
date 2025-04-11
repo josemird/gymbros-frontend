@@ -1,45 +1,41 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
-import { AuthService } from '../../services/auth/auth.service';  // Inyectamos AuthService
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
   private userService = inject(UserService);
-  private authService = inject(AuthService);  // Inyectamos AuthService
+  private authService = inject(AuthService);
   users: any[] = [];
   loading = true;
-  loggedUser: any = {};  // Variable para almacenar el usuario logueado
+  loggedUser: any = {};
+ ngOnInit() {
+    this.loggedUser = JSON.parse(localStorage.getItem('user') || '{}'); // O usa authService.getLoggedUser()
 
-  ngOnInit() {
-    // Obtener el usuario logueado desde AuthService
-    this.loggedUser = this.authService.getLoggedUser();  // Usamos el servicio para obtener el usuario logueado
+    this.userService.getUsers().subscribe({
+      next: (res) => {
+        this.users = res.users.filter((user: any) => user.id !== this.loggedUser.id);
+        this.loading = false;
 
-    if (this.loggedUser) {
-      // Obtener la lista de usuarios desde la API
-      this.userService.getUsers().subscribe({
-        next: (res) => {
-          // Filtrar la lista de usuarios excluyendo al usuario logueado
-          this.users = res.users.filter((user: any) => user.id !== this.loggedUser.id);
-          this.loading = false;
+        console.log(this.users); // Verifica que los usuarios se están obteniendo correctamente
+        console.log(this.loggedUser); // Verifica que el usuario logueado se está obteniendo correctamente
+        console.log(this.authService.getLoggedUser()); // Verifica que el usuario logueado se está obteniendo correctamente desde el servicio
+        console.log(this.authService.getToken()); // Verifica que el token se está obteniendo correctamente desde el servicio
+        console.log(this.authService.isLoggedIn()); // Verifica que el estado de autenticación se está obteniendo correctamente desde el servicio
+        console.log(this.authService.isLoggedIn().subscribe()); // Verifica que el estado de autenticación se está obteniendo correctamente desde el servicio
+        console.log(this.authService.getLoggedUser()); // Verifica que el token se está obteniendo correctamente desde el servicio
 
-          console.log('Usuario logueado:', this.loggedUser);
-          console.log('Usuarios de la API:', res.users);
-          console.log('Usuarios filtrados:', this.users);
-        },
-        error: () => {
-          this.loading = false;
-        }
-      });
-    } else {
-      console.error("El usuario no está logueado.");
-      this.loading = false;
-    }
+      },
+      error: () => {
+        this.loading = false;
+      }
+    });
   }
 }
