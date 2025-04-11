@@ -19,6 +19,9 @@
     gap: 1rem;
 
     label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       font-weight: 600;
       margin-bottom: 0.25rem;
     }
@@ -60,22 +63,6 @@
       margin-bottom: 1rem;
       font-size: 1.5rem;
       color: #333;
-    }
-
-    div {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 1rem;
-
-      .remember-me {
-        display: flex;
-        align-items: center;
-
-        input {
-          margin-right: 0.5rem;
-        }
-      }
     }
 
 
