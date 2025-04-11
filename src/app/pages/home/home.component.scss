@@ -77,7 +77,8 @@ div {
   justify-content: center;
   gap: 4rem;
   margin-top: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  align-items: center;
   text-align: left;
   width: 100%;
 
