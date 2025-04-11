@@ -77,9 +77,9 @@ div {
 .info-columns {
   display: flex;
   justify-content: center;
-  gap: 4rem;
+  gap: 2rem;
   margin-top: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: no wrap;
   align-items: center;
   text-align: left;
   width: 100%;
@@ -102,7 +102,7 @@ div {
   align-items: center;
 
   button {
-    width: 150px;
+    width: 120px;
   }
 
   @media (min-width: 768px) {
