@@ -3,14 +3,19 @@
     <img [src]="user.photo || 'https://via.placeholder.com/150'" alt="Foto de perfil">
     <h3>{{ user.name }}</h3>
 
-    <div class="info-grid">
-      <p><strong>Usuario:</strong> {{ user.username }}</p>
-      <p><strong>Gimnasio:</strong> {{ user.gym || 'No indicado' }}</p>
-      <p><strong>Edad:</strong> {{ user.age || 'No indicada' }}</p>
-      <p><strong>Ejercicios favoritos:</strong> {{ user.favorite_exercises || 'No indicado' }}</p>
-      <p><strong>Hobbies:</strong> {{ user.hobbies || 'No indicado' }}</p>
-      <p><strong>Objetivos:</strong> {{ user.goals || 'No indicado' }}</p>
+    <div class="info-columns">
+      <div class="column">
+        <p><strong>Usuario:</strong> {{ user.username }}</p>
+        <p><strong>Edad:</strong> {{ user.age || 'No indicada' }}</p>
+        <p><strong>Gimnasio:</strong> {{ user.gym || 'No indicado' }}</p>
+      </div>
+      <div class="column">
+        <p><strong>Hobbies:</strong> {{ user.hobbies || 'No indicado' }}</p>
+        <p><strong>Objetivos:</strong> {{ user.goals || 'No indicado' }}</p>
+        <p><strong>Ejercicios favoritos:</strong> {{ user.favorite_exercises || 'No indicado' }}</p>
+      </div>
     </div>
+
 
     <button>❤️ Like</button>
     <button>💬 Mensaje</button>
