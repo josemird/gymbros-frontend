@@ -17,11 +17,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loggedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    const loggedUser = JSON.parse(localStorage.getItem('user') || '{}');
+    console.log(loggedUser);
 
     this.userService.getUsers().subscribe({
       next: (res) => {
-        this.users = res.users.filter((user: any) => user.id !== this.loggedUser.id);
+        this.users = res.users.filter((user: any) => user.id !== loggedUser.id);
         this.loading = false;
       },
       error: () => {
