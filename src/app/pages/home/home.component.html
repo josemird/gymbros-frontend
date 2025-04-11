@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div *ngIf="loading">Cargando usuarios...</div>
+
+<div *ngIf="!loading && users.length === 0">No se encontraron usuarios</div>
+
+<div *ngIf="!loading && users.length > 0">
+  <div *ngFor="let user of users" class="user-card">
+    <img [src]="user.photo || 'https://via.placeholder.com/150'" alt="Foto de perfil">
+    <h3>{{ user.name }}</h3>
+    <p>Usuario: {{ user.username }}</p>
+    <p>Gimnasio: {{ user.gym || 'No indicado' }}</p>
+    <p>Edad: {{ user.age || 'No indicada' }}</p>
+    <p>Ejercicios favoritos: {{ user.favorite_exercises || 'No indicado' }}</p>
+    <p>Hobbies: {{ user.hobbies || 'No indicado' }}</p>
+    <p>Objetivos: {{ user.goals || 'No indicado' }}</p>
+
+    <button>❤️ Like</button>
+    <button>💬 Mensaje</button>
+  </div>
+</div>
