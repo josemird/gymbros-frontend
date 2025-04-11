@@ -44,7 +44,11 @@ export class AuthService {
   }
 
   getLoggedUser(): any {
-    return JSON.parse(localStorage.getItem(this.userKey) || '{}');
+    const user = localStorage.getItem(this.userKey);
+    if (user) {
+      return JSON.parse(user);
+    }
+    return null;
   }
 
   isLoggedIn(): Observable<boolean> {
