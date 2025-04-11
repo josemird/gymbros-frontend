@@ -39,4 +39,13 @@ export class AuthService {
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
   }
+
+  getLoggedUser(): any {
+    const user = localStorage.getItem('user');
+    if (user) {
+      return JSON.parse(user);  // Si el usuario está guardado, lo parseamos y devolvemos
+    }
+    return null;  // Si no existe, devolvemos null
+  }
+
 }
