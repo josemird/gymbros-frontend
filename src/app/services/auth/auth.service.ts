@@ -17,6 +17,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.token);
+        localStorage.setItem('user', JSON.stringify(res.user));
         this.isAuthenticated$.next(true);
       })
     );
