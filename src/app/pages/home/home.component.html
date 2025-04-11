@@ -1,17 +1,16 @@
-<div *ngIf="loading">Cargando usuarios...</div>
-
-<div *ngIf="!loading && users.length === 0">No se encontraron usuarios</div>
-
 <div *ngIf="!loading && users.length > 0">
   <div *ngFor="let user of users" class="user-card">
     <img [src]="user.photo || 'https://via.placeholder.com/150'" alt="Foto de perfil">
     <h3>{{ user.name }}</h3>
-    <p>Usuario: {{ user.username }}</p>
-    <p>Gimnasio: {{ user.gym || 'No indicado' }}</p>
-    <p>Edad: {{ user.age || 'No indicada' }}</p>
-    <p>Ejercicios favoritos: {{ user.favorite_exercises || 'No indicado' }}</p>
-    <p>Hobbies: {{ user.hobbies || 'No indicado' }}</p>
-    <p>Objetivos: {{ user.goals || 'No indicado' }}</p>
+
+    <div class="info-grid">
+      <p><strong>Usuario:</strong> {{ user.username }}</p>
+      <p><strong>Gimnasio:</strong> {{ user.gym || 'No indicado' }}</p>
+      <p><strong>Edad:</strong> {{ user.age || 'No indicada' }}</p>
+      <p><strong>Ejercicios favoritos:</strong> {{ user.favorite_exercises || 'No indicado' }}</p>
+      <p><strong>Hobbies:</strong> {{ user.hobbies || 'No indicado' }}</p>
+      <p><strong>Objetivos:</strong> {{ user.goals || 'No indicado' }}</p>
+    </div>
 
     <button>❤️ Like</button>
     <button>💬 Mensaje</button>

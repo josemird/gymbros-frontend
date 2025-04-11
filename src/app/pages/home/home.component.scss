@@ -25,8 +25,8 @@ div {
   text-align: center;
 
   img {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 50%;
     border: 2px solid #1abc9c;
@@ -72,7 +72,26 @@ div {
   }
 }
 
-/* Loader y mensaje de vacío */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  margin-top: 1rem;
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+  }
+
+  strong {
+    color: #333;
+  }
+}
+
+
 div[ngIf] {
   text-align: center;
   font-size: 1rem;
