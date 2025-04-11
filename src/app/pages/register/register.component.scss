@@ -55,6 +55,30 @@
       font-size: 0.9rem;
     }
 
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1rem;
+
+      .remember-me {
+        display: flex;
+        align-items: center;
+
+        input {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+
+
     .link {
       text-align: center;
       font-size: 0.9rem;
