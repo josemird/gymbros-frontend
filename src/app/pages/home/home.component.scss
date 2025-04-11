@@ -10,6 +10,7 @@
 div {
   width: 100%;
   max-width: 900px;
+  margin: 0 auto; // <- ¡Esto centra horizontalmente!
 }
 
 .user-card {
@@ -75,26 +76,21 @@ div {
 .info-columns {
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   gap: 4rem;
   margin-top: 1rem;
-  flex-wrap: nowrap;
-  align-items: center;
-  text-align: left;
+  flex-wrap: wrap;
   width: 100%;
 
   .column {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     gap: 0.5rem;
     text-align: left;
     padding: 0 1rem;
-  }
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
+    min-width: 200px;
+    max-width: 300px;
+    flex: 1 1 250px;
   }
 }
 
@@ -119,7 +115,6 @@ div {
     }
   }
 }
-
 
 div[ngIf] {
   text-align: center;
