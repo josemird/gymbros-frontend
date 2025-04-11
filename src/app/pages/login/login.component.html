@@ -13,11 +13,13 @@
     <input type="password" formControlName="password" />
   </div>
 
-  <br><br>
+  <br>
 
   <button type="submit" [disabled]="form.invalid">Entrar</button>
 
   <p *ngIf="error">{{ error }}</p>
+
+  <br>
 
   <p>
     ¿No tienes cuenta?
