@@ -75,6 +75,7 @@ div {
 .info-columns {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1rem;
   margin-top: 1rem;
   width: 100%;
