@@ -1,8 +1,9 @@
+// src/app/services/auth/auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-@Injectable({ providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
   private tokenKey = 'token';
@@ -17,8 +18,7 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
         console.log('Login response:', res);
-        localStorage.setItem(this.tokenKey, res.token);
-        localStorage.setItem('user', JSON.stringify(res.user)); //* revisar este guardado
+        localStorage.setItem(this.tokenKey, res.access_token);
         this.isAuthenticated$.next(true);
       })
     );
@@ -28,6 +28,15 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
 
+  logout(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+      tap(() => {
+        localStorage.removeItem(this.tokenKey);
+        this.isAuthenticated$.next(false);
+      })
+    );
+  }
+
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
@@ -35,28 +44,4 @@ export class AuthService {
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
   }
-
-  logout(): void {
-    const token = this.getToken();
-    if (token) {
-      this.http.post('https://vps-ff89e3e0.vps.ovh.net/api/logout', {}, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }).subscribe({
-        next: () => {
-          localStorage.removeItem(this.tokenKey);
-          this.isAuthenticated$.next(false);
-        },
-        error: () => {
-          localStorage.removeItem(this.tokenKey);
-          this.isAuthenticated$.next(false);
-        }
-      });
-    } else {
-      localStorage.removeItem(this.tokenKey);
-      this.isAuthenticated$.next(false);
-    }
-  }
-
 }
