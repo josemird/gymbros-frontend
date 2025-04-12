@@ -18,6 +18,9 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.token);
         localStorage.setItem('user', JSON.stringify(res.user)); //* revisar este guardado
+        console.log('token', res.token);
+        console.log('user', res.user);
+        console.log(this.tokenKey, res.token);
         console.log('user', JSON.stringify(res.user));
         this.isAuthenticated$.next(true);
       })
