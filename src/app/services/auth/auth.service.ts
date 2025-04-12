@@ -1,7 +1,6 @@
-// src/app/services/auth/auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -17,7 +16,7 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        localStorage.setItem(this.tokenKey, res.access_token);
+        localStorage.setItem(this.tokenKey, res.access_token); // ✅ CORRECTO
         this.isAuthenticated$.next(true);
       })
     );
@@ -27,20 +26,21 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
 
-  logout(): void {
-    this.http.post(`${this.apiUrl}/logout`, {}).subscribe({
-      next: () => {
-        // Logout exitoso en backend
+  logout(): Observable<any> {
+    const token = this.getToken();
+    if (!token) {
+      this.isAuthenticated$.next(false);
+      return of(null);
+    }
+
+    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+      tap(() => {
         localStorage.removeItem(this.tokenKey);
         this.isAuthenticated$.next(false);
-      },
-      error: (err) => {
-        console.error('Error al cerrar sesión en el backend:', err);
-        localStorage.removeItem(this.tokenKey);
-        this.isAuthenticated$.next(false);
-      }
-    });
+      })
+    );
   }
+
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);

@@ -19,7 +19,9 @@ export class NavbarComponent {
   isLoggedIn$: Observable<boolean> = this.auth.isLoggedIn();
 
   logout() {
-    this.auth.logout();
-    this.router.navigate(['/login']);
+    this.auth.logout().subscribe({
+      next: () => this.router.navigate(['/login']),
+      error: (err) => console.error('Error cerrando sesión en el backend:', err)
+    });
   }
 }
