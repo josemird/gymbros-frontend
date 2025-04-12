@@ -14,6 +14,8 @@ export class AuthInterceptor implements HttpInterceptor {
     const token = this.authService.getToken();
 
     if (token) {
+      console.log('[AuthInterceptor] Token detectado, se añade a la petición:', token); // 👈
+
       const authReq = req.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`
@@ -22,6 +24,8 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(authReq);
     }
 
+    console.warn('[AuthInterceptor] No se encontró token para:', req.url); // 👈
     return next.handle(req);
   }
+
 }
