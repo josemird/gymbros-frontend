@@ -28,15 +28,24 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+    const token = this.getToken();
+    if (!token) {
+      this.isAuthenticated$.next(false);
+      return of(null);
+    }
+
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    return this.http.post(`${this.apiUrl}/logout`, {}, { headers }).pipe(
       tap(() => {
-        this.isAuthenticated$.next(false);
-      }),
-      finalize(() => {
         localStorage.removeItem(this.tokenKey);
+        this.isAuthenticated$.next(false);
       })
     );
   }
+
 
   getToken(): string | null {
     try {
