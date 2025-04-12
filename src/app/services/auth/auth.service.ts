@@ -16,6 +16,7 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
+        console.log('[AuthService] Token recibido tras login:', res.access_token);
         localStorage.setItem(this.tokenKey, res.access_token);
         this.isAuthenticated$.next(true);
       })
@@ -37,10 +38,19 @@ export class AuthService {
     );
   }
 
-
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
+    try {
+      const token = localStorage.getItem(this.tokenKey);
+      if (!token) {
+        console.warn('[AuthService] No se encontró token en localStorage');
+      }
+      return token;
+    } catch (err) {
+      console.error('[AuthService] Error al acceder a localStorage', err);
+      return null;
+    }
   }
+
 
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
