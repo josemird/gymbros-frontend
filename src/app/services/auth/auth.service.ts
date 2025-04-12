@@ -18,10 +18,6 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.token);
         localStorage.setItem('user', JSON.stringify(res.user)); //* revisar este guardado
-        console.log('token', res.token);
-        console.log('user', res.user);
-        console.log(this.tokenKey, res.token);
-        console.log('user', JSON.stringify(res.user));
         this.isAuthenticated$.next(true);
       })
     );
@@ -31,17 +27,35 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
 
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
-    this.isAuthenticated$.next(false);
-  }
-
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
+  }
+
+  logout(): void {
+    const token = this.getToken();
+    if (token) {
+      this.http.post('https://vps-ff89e3e0.vps.ovh.net/api/logout', {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).subscribe({
+        next: () => {
+          localStorage.removeItem(this.tokenKey);
+          this.isAuthenticated$.next(false);
+        },
+        error: () => {
+          localStorage.removeItem(this.tokenKey);
+          this.isAuthenticated$.next(false);
+        }
+      });
+    } else {
+      localStorage.removeItem(this.tokenKey);
+      this.isAuthenticated$.next(false);
+    }
   }
 
 }
