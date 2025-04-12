@@ -17,7 +17,6 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        console.log('Login response:', res);
         localStorage.setItem(this.tokenKey, res.access_token);
         this.isAuthenticated$.next(true);
       })
@@ -28,13 +27,19 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/register`, data);
   }
 
-  logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
-      tap(() => {
+  logout(): void {
+    this.http.post(`${this.apiUrl}/logout`, {}).subscribe({
+      next: () => {
+        // Logout exitoso en backend
         localStorage.removeItem(this.tokenKey);
         this.isAuthenticated$.next(false);
-      })
-    );
+      },
+      error: (err) => {
+        console.error('Error al cerrar sesión en el backend:', err);
+        localStorage.removeItem(this.tokenKey);
+        this.isAuthenticated$.next(false);
+      }
+    });
   }
 
   getToken(): string | null {
