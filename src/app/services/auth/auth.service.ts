@@ -16,6 +16,7 @@ export class AuthService {
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
+        console.log('Login response:', res);
         localStorage.setItem(this.tokenKey, res.token);
         localStorage.setItem('user', JSON.stringify(res.user)); //* revisar este guardado
         this.isAuthenticated$.next(true);
