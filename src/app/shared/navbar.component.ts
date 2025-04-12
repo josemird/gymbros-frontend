@@ -1,25 +1,53 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+// src/app/services/auth/auth.service.ts
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-@Component({
-  selector: 'app-navbar',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
-})
-export class NavbarComponent {
-  private auth = inject(AuthService);
-  private router = inject(Router);
+@Injectable({ providedIn: 'root' })
+export class AuthService {
+  private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
+  private tokenKey = 'token';
+  private isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  isLoggedIn$: Observable<boolean> = this.auth.isLoggedIn();
+  constructor(private http: HttpClient) {
+    const token = localStorage.getItem(this.tokenKey);
+    this.isAuthenticated$.next(!!token);
+  }
 
-  logout() {
-    this.auth.logout();
-    this.router.navigate(['/login']);
+  login(email: string, password: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
+      tap((res: any) => {
+        localStorage.setItem(this.tokenKey, res.access_token);
+        this.isAuthenticated$.next(true);
+      })
+    );
+  }
+
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
+  }
+
+  logout(): void {
+    this.http.post(`${this.apiUrl}/logout`, {}).subscribe({
+      next: () => {
+        // Logout exitoso en backend
+        localStorage.removeItem(this.tokenKey);
+        this.isAuthenticated$.next(false);
+      },
+      error: (err) => {
+        // Si hay error también borramos el token local para asegurar logout
+        console.error('Error al cerrar sesión en el backend:', err);
+        localStorage.removeItem(this.tokenKey);
+        this.isAuthenticated$.next(false);
+      }
+    });
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable();
   }
 }
