@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, finalize, Observable, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -27,16 +27,12 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    const token = this.getToken();
-    if (!token) {
-      this.isAuthenticated$.next(false);
-      return of(null);
-    }
-
     return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
       tap(() => {
-        localStorage.removeItem(this.tokenKey);
         this.isAuthenticated$.next(false);
+      }),
+      finalize(() => {
+        localStorage.removeItem(this.tokenKey);
       })
     );
   }
