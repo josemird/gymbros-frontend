@@ -46,20 +46,14 @@ export class AuthService {
     );
   }
 
-
   getToken(): string | null {
     try {
-      const token = localStorage.getItem(this.tokenKey);
-      if (!token) {
-        console.warn('[AuthService] No se encontró token en localStorage');
-      }
-      return token;
-    } catch (err) {
-      console.error('[AuthService] Error al acceder a localStorage', err);
+      return localStorage.getItem(this.tokenKey);
+    } catch (error) {
+      console.error('[AuthService] Error al acceder a localStorage:', error);
       return null;
     }
   }
-
 
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
