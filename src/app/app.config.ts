@@ -1,13 +1,13 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { AuthInterceptor } from './services/auth/auth.interceptor';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-
 import { appRoutes } from './app.routes';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(appRoutes),
-    provideHttpClient(withInterceptorsFromDi()), //este es el interceptor de autenticacion que se encuentra en el servicio de autenticacion y usa auth.interceptor.ts declarado en providers como interceptor global (providedIn: 'root')
+    provideHttpClient(withInterceptors([AuthInterceptor])), // <-- Usa esta línea
     provideZoneChangeDetection({ eventCoalescing: true })
   ]
 };
