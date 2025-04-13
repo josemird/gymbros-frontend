@@ -31,7 +31,7 @@ export class AuthService {
   }
 
   private fetchCurrentUser() {
-    this.http.get<any>(`${this.apiUrl}/force_profile`).subscribe({
+    this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
       next: (user) => {
         this.userEmail = user.email;
       },
