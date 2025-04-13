@@ -57,4 +57,9 @@ export class AuthService {
   isLoggedIn(): Observable<boolean> {
     return this.isAuthenticated$.asObservable();
   }
+
+  getProfile(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/profile`);
+  }
+
 }
