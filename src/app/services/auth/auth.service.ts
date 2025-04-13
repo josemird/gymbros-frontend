@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { UserService } from '../user/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -10,7 +11,7 @@ export class AuthService {
 
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private userService: UserService) {
     const token = localStorage.getItem(this.tokenKey);
     this.isAuthenticated$.next(!!token);
 
@@ -28,7 +29,6 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.access_token);
         this.isAuthenticated$.next(true);
-
         this.fetchCurrentUser();
       })
     );
@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   private fetchCurrentUser() {
-    this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
+    this.userService.getProfile().subscribe({
       next: (user) => {
         this.currentUser = user;
       },
