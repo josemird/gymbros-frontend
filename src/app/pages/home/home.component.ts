@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   users: any[] = [];
   loading = true;
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.userService.getUsers().subscribe({
       next: (res) => {
         console.log(res);
