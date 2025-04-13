@@ -41,7 +41,7 @@ export class AuthService {
     }
   }
 
-  getUser(): Observable<any> | null {
+  getUser(): any | null {
     try {
       const user = localStorage.getItem(this.usersKey);
       console.log(user)
