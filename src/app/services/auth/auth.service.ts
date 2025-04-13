@@ -7,7 +7,6 @@ import { UserService } from '../user/user.service';
 export class AuthService {
   private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
   private tokenKey = 'token';
-  private currentUser: any = null;
 
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
@@ -16,12 +15,8 @@ export class AuthService {
     this.isAuthenticated$.next(!!token);
 
     if (token) {
-      this.fetchCurrentUser();
+      this.userService.fetchCurrentUser();
     }
-  }
-
-  register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data);
   }
 
   login(email: string, password: string): Observable<any> {
@@ -29,36 +24,13 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.access_token);
         this.isAuthenticated$.next(true);
-        this.fetchCurrentUser();
+        this.userService.fetchCurrentUser();
       })
     );
   }
 
-  getToken(): string | null {
-    try {
-      return localStorage.getItem(this.tokenKey);
-    } catch {
-      return null;
-    }
-  }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.isAuthenticated$.asObservable();
-  }
-
-  private fetchCurrentUser() {
-    this.userService.getProfile().subscribe({
-      next: (user) => {
-        this.currentUser = user;
-      },
-      error: () => {
-        this.currentUser = null;
-      }
-    });
-  }
-
-  getUser(): any | null {
-    return this.currentUser;
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
   }
 
   logout(): Observable<any> {
@@ -78,5 +50,17 @@ export class AuthService {
         this.isAuthenticated$.next(false);
       })
     );
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable();
+  }
+
+  getToken(): string | null {
+    try {
+      return localStorage.getItem(this.tokenKey);
+    } catch {
+      return null;
+    }
   }
 }

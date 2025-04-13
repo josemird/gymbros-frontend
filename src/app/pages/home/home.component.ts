@@ -12,7 +12,6 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   private userService = inject(UserService);
-  private authService = inject(AuthService);
 
   users: any[] = [];
   loading = true;
@@ -20,12 +19,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().subscribe({
       next: (res) => {
-        console.log(res);
-        const currentUser = this.authService.getUser();
+        const currentUser = this.userService.getCurrentUser();
         console.log(currentUser);
-        const currentEmail = currentUser?.email;
-
-        this.users = res.users.filter((user: any) => user.email !== currentEmail);
+        this.users = res.users.filter((user: any) => user.email !== currentUser?.email);
         this.loading = false;
       },
       error: () => {
