@@ -1,12 +1,12 @@
-// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
   private tokenKey = 'token';
+  private usersKey = 'user';
   private userEmail: string | null = null;
 
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
@@ -20,15 +20,33 @@ export class AuthService {
     }
   }
 
+  register(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data);
+  }
+
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        console.log(res);
+        console.log(res)
         localStorage.setItem(this.tokenKey, res.access_token);
+        console.log(this.usersKey)
         this.isAuthenticated$.next(true);
+
         this.userEmail = email;
       })
     );
+  }
+
+  getToken(): string | null {
+    try {
+      return localStorage.getItem(this.tokenKey);
+    } catch {
+      return null;
+    }
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable();
   }
 
   private fetchCurrentUser() {
@@ -46,20 +64,23 @@ export class AuthService {
     return this.userEmail;
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  isLoggedIn(): Observable<boolean> {
-    return this.isAuthenticated$.asObservable();
-  }
-
   logout(): Observable<any> {
-    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
+    const token = this.getToken();
+    if (!token) {
+      this.isAuthenticated$.next(false);
+      return of(null);
+    }
+
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    return this.http.post(`${this.apiUrl}/logout`, {}, { headers }).pipe(
       tap(() => {
         localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem(this.usersKey);
+        console.log(this.usersKey)
         this.isAuthenticated$.next(false);
-        this.userEmail = null;
       })
     );
   }
