@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
 
     this.userService.getUsers().subscribe({
       next: (res) => {
-        const currentEmail = this.authService.getUserEmail();
-        this.users = res.users.filter((user: any) => user.email !== currentEmail);
+        const currentUser = this.authService.getUser();
+        this.users = res.users.filter((user: any) => user.id !== currentUser?.id);
         this.loading = false;
       },
       error: () => {
