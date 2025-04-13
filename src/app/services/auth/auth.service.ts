@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, of, tap } from 'rxjs';
 export class AuthService {
   private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
   private tokenKey = 'token';
-  private userKey = 'user';
+  private userKey = 'users';
 
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
