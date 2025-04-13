@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
 
     this.userService.getUsers().subscribe({
       next: (res) => {
+        console.log(res);
         const currentUser = this.authService.getUser();
         this.users = res.users.filter((user: any) => user.id !== currentUser?.id);
         this.loading = false;
