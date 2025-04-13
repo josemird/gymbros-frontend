@@ -24,6 +24,7 @@ export class AuthService {
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.access_token);
         localStorage.setItem(this.usersKey, JSON.stringify(res.users));
+        console.log(this.usersKey)
         this.isAuthenticated$.next(true);
       })
     );
@@ -40,6 +41,7 @@ export class AuthService {
   getUser(): any | null {
     try {
       const user = localStorage.getItem(this.usersKey);
+      console.log(user)
       return user ? JSON.parse(user) : null;
     } catch {
       return null;
