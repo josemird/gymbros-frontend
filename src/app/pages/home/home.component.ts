@@ -11,21 +11,17 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent implements OnInit {
-
   private userService = inject(UserService);
-  private authService = inject(AuthService);
+  private auth = inject(AuthService);
 
   users: any[] = [];
   loading = true;
-  loggedUser: any = {};
 
-  ngOnInit() {
-
+  ngOnInit(): void {
     this.userService.getUsers().subscribe({
       next: (res) => {
-        const currentUser = this.authService.getUser();
-        console.log(currentUser);
-        this.users = res.users.filter((user: any) => user.id !== currentUser?.id);
+        const currentEmail = this.auth.getUserEmail();
+        this.users = res.users.filter((user: any) => user.email !== currentEmail);
         this.loading = false;
       },
       error: () => {

@@ -1,52 +1,52 @@
+// auth.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
   private tokenKey = 'token';
-  private usersKey = 'users';
+  private userEmail: string | null = null;
 
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem(this.tokenKey);
     this.isAuthenticated$.next(!!token);
-  }
 
-  register(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/register`, data);
+    if (token) {
+      this.fetchCurrentUser(); // ⚠️ Pedimos el email del usuario logueado si hay token
+    }
   }
 
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, { email, password }).pipe(
       tap((res: any) => {
-        console.log(res);
         localStorage.setItem(this.tokenKey, res.access_token);
-        localStorage.setItem(this.usersKey, JSON.stringify(res.users));
-        console.log(this.usersKey)
         this.isAuthenticated$.next(true);
+        this.userEmail = email; // 🔥 Guardamos el email
       })
     );
   }
 
-  getToken(): string | null {
-    try {
-      return localStorage.getItem(this.tokenKey);
-    } catch {
-      return null;
-    }
+  private fetchCurrentUser() {
+    this.http.get<any>(`${this.apiUrl}/force_profile`).subscribe({
+      next: (user) => {
+        this.userEmail = user.email;
+      },
+      error: () => {
+        this.userEmail = null;
+      }
+    });
   }
 
-  getUser(): any | null {
-    try {
-      const user = localStorage.getItem(this.usersKey);
-      console.log(user)
-      return user ? JSON.parse(user) : null;
-    } catch {
-      return null;
-    }
+  getUserEmail(): string | null {
+    return this.userEmail;
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
   }
 
   isLoggedIn(): Observable<boolean> {
@@ -54,21 +54,11 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    const token = this.getToken();
-    if (!token) {
-      this.isAuthenticated$.next(false);
-      return of(null);
-    }
-
-    const headers = {
-      Authorization: `Bearer ${token}`
-    };
-
-    return this.http.post(`${this.apiUrl}/logout`, {}, { headers }).pipe(
+    return this.http.post(`${this.apiUrl}/logout`, {}).pipe(
       tap(() => {
         localStorage.removeItem(this.tokenKey);
-        localStorage.removeItem(this.usersKey);
         this.isAuthenticated$.next(false);
+        this.userEmail = null;
       })
     );
   }
