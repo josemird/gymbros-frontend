@@ -49,7 +49,8 @@ export class AuthService {
   private fetchCurrentUser() {
     this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
       next: (user) => {
-        this.currentUser = user;      },
+        this.currentUser = user;
+      },
       error: () => {
         this.currentUser = null;
       }

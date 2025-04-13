@@ -20,7 +20,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.userService.getUsers().subscribe({
       next: (res) => {
+        console.log(res);
         const currentUser = this.authService.getUser();
+        console.log(currentUser);
         const currentEmail = currentUser?.email;
 
         this.users = res.users.filter((user: any) => user.email !== currentEmail);
