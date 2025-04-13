@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
   private userService = inject(UserService);
-  private auth = inject(AuthService);
+  private authService = inject(AuthService);
 
   users: any[] = [];
   loading = true;
@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers().subscribe({
       next: (res) => {
-        const currentEmail = this.auth.getUserEmail();
+        const currentEmail = this.authService.getUserEmail();
         this.users = res.users.filter((user: any) => user.email !== currentEmail);
         this.loading = false;
       },

@@ -16,7 +16,7 @@ export class AuthService {
     this.isAuthenticated$.next(!!token);
 
     if (token) {
-      this.fetchCurrentUser(); // ⚠️ Pedimos el email del usuario logueado si hay token
+      this.fetchCurrentUser();
     }
   }
 
