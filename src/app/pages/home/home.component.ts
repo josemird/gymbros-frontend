@@ -22,9 +22,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
     this.userService.getUsers().subscribe({
-      next: (allUsers) => {
+      next: (res) => {
         const currentEmail = this.authService.getUserEmail();
-        this.users = allUsers.filter((user: any) => user.email !== currentEmail);
+        this.users = res.users.filter((user: any) => user.email !== currentEmail);
         this.loading = false;
       },
       error: () => {
