@@ -52,7 +52,9 @@ export class AuthService {
     return this.http.post(`${this.apiUrl}/logout`, {}, { headers }).pipe(
       tap(() => {
         localStorage.removeItem(this.tokenKey);
+        localStorage.removeItem('user');
         this.isAuthenticated$.next(false);
+        this.userService.setCurrentUser(null);
       })
     );
   }

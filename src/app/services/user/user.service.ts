@@ -20,7 +20,17 @@ export class UserService {
   }
 
   fetchCurrentUser(): void {
-    this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
+    const token = localStorage.getItem('token');
+    if (!token) {
+      this.currentUser.next(null);
+      return;
+    }
+
+    const headers = {
+      Authorization: `Bearer ${token}`
+    };
+
+    this.http.get<any>(`${this.apiUrl}/profile`, { headers }).subscribe({
       next: user => {
         this.currentUser.next(user);
         localStorage.setItem('user', JSON.stringify(user));
