@@ -1,10 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from './services/user/user.service';
+import { RouterOutlet } from '@angular/router';
+import { NavbarComponent } from './shared/navbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
