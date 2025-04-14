@@ -17,17 +17,20 @@ export class HomeComponent implements OnInit {
   loading = true;
 
   ngOnInit() {
-    combineLatest([
-      this.userService.getUsers(),
-      this.userService.watchCurrentUser$()
-    ]).subscribe({
-      next: ([res, currentUser]) => {
-        this.users = res.users.filter((user: any) => user.email !== currentUser?.email);
-        this.loading = false;
-      },
-      error: () => {
-        this.loading = false;
-      }
+    this.loading = true;
+
+    this.userService.watchCurrentUser$().subscribe(currentUser => {
+      if (!currentUser) return;
+
+      this.userService.getUsers().subscribe({
+        next: (res) => {
+          this.users = res.users.filter((user: any) => user.email !== currentUser.email);
+          this.loading = false;
+        },
+        error: () => {
+          this.loading = false;
+        }
+      });
     });
   }
 }
