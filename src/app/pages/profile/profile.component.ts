@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user/user.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   private fb = inject(FormBuilder);
   private userService = inject(UserService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   form = this.fb.group({
@@ -36,8 +38,19 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.userService.getCurrentUser();
+
     if (user) {
       this.form.patchValue(user);
+    } else {
+      const token = this.authService.getToken();
+      if (token) {
+        this.userService.fetchCurrentUser();
+        this.userService.watchCurrentUser$().subscribe(user => {
+          if (user) {
+            this.form.patchValue(user);
+          }
+        });
+      }
     }
   }
 
@@ -78,17 +91,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onPhotoSelected(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0];
-  if (!file) return;
+  onPhotoSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    const base64 = reader.result as string;
-    this.form.get('photo')?.setValue(base64);
-    this.userService.updateCurrentUser({ photo: base64 });
-  };
-  reader.readAsDataURL(file);
-}
-
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result as string;
+      this.form.get('photo')?.setValue(base64);
+      this.userService.updateCurrentUser({ photo: base64 }).subscribe();
+    };
+    reader.readAsDataURL(file);
+  }
 }
