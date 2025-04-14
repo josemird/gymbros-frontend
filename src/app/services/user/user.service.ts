@@ -5,20 +5,9 @@ import { Observable, BehaviorSubject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
-
   private currentUser = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient) {
-    const token = localStorage.getItem('token');
-    const storedUser = localStorage.getItem('user');
-
-    if (token) {
-      if (storedUser) {
-        this.setCurrentUser(JSON.parse(storedUser));
-      }
-      this.fetchCurrentUser();
-    }
-  }
+  constructor(private http: HttpClient) {}
 
   getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/user`);
@@ -60,5 +49,4 @@ export class UserService {
     const userId = this.getCurrentUser()?.id;
     return this.http.delete(`${this.apiUrl}/user/${userId}`);
   }
-
 }
