@@ -25,7 +25,7 @@ export class UserService {
     return this.currentUser.value;
   }
 
-  getCurrentUser$(): Observable<any> {
+  watchCurrentUser$(): Observable<any> {
     return this.currentUser.asObservable();
   }
 }
