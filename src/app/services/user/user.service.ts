@@ -8,7 +8,12 @@ export class UserService {
 
   private currentUser = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.fetchCurrentUser();
+    }
+  }
 
   getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/user`);
