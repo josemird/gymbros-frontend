@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from './services/user/user.service';
+import { AuthService } from './services/auth/auth.service';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar.component';
 
@@ -13,8 +14,12 @@ import { NavbarComponent } from './shared/navbar.component';
 export class AppComponent implements OnInit {
   title = 'Gymbros';
   private userService = inject(UserService);
+  private authService = inject(AuthService);
 
   ngOnInit(): void {
-    this.userService.fetchCurrentUser();
+    const token = this.authService.getToken();
+    if (token) {
+      this.userService.fetchCurrentUser();
+    }
   }
 }
