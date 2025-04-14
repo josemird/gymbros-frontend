@@ -1,55 +1,35 @@
-<div *ngIf="loading">Cargando perfil...</div>
+<div class="profile-container">
+  <div class="profile-card">
+    <label class="image-upload">
+      <img [src]="form.value.photo || 'https://via.placeholder.com/150'" alt="Foto de perfil" />
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+    </label>
 
-<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label>Nombre</label>
-    <input formControlName="name" />
+    <form [formGroup]="form">
+      <div class="field-row" *ngFor="let field of ['name', 'username', 'email', 'gym', 'age', 'favorite_exercises', 'goals', 'hobbies']">
+        <label>{{ field | titlecase }}</label>
+        <div class="input-group">
+          <input [formControlName]="field" [readonly]="editingField !== field" />
+          <button type="button" (click)="onEdit(field)">
+            {{ editingField === field ? 'Guardar' : 'Editar' }}
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <div class="password-section">
+      <button (click)="showPasswordChange = !showPasswordChange">
+        Cambiar contraseña
+      </button>
+
+      <div *ngIf="showPasswordChange" class="password-form">
+        <input type="password" placeholder="Nueva contraseña" [(ngModel)]="newPassword" />
+        <input type="password" placeholder="Confirmar contraseña" [(ngModel)]="confirmPassword" />
+        <button (click)="onPasswordChange()">Guardar contraseña</button>
+        <p *ngIf="error">{{ error }}</p>
+      </div>
+    </div>
+
+    <button class="delete-button" (click)="onDelete()">Eliminar cuenta</button>
   </div>
-
-  <div class="form-group">
-    <label>Nombre de usuario</label>
-    <input formControlName="username" />
-  </div>
-
-  <div class="form-group">
-    <label>Email</label>
-    <input formControlName="email" />
-  </div>
-
-  <div class="form-group">
-    <label>Foto (URL)</label>
-    <input formControlName="photo" />
-  </div>
-
-  <div class="form-group">
-    <label>Gimnasio</label>
-    <input formControlName="gym" />
-  </div>
-
-  <div class="form-group">
-    <label>Edad</label>
-    <input formControlName="age" type="number" />
-  </div>
-
-  <div class="form-group">
-    <label>Ejercicios favoritos</label>
-    <input formControlName="favorite_exercises" />
-  </div>
-
-  <div class="form-group">
-    <label>Objetivos</label>
-    <input formControlName="goals" />
-  </div>
-
-  <div class="form-group">
-    <label>Hobbies</label>
-    <input formControlName="hobbies" />
-  </div>
-
-  <button type="submit" [disabled]="form.invalid">Guardar cambios</button>
-  <button type="button" (click)="onChangePassword()">Cambiar contraseña</button>
-  <button type="button" (click)="onDeleteAccount()">Eliminar cuenta</button>
-
-  <p class="success" *ngIf="success">{{ success }}</p>
-  <p class="error" *ngIf="error">{{ error }}</p>
-</form>
+</div>
