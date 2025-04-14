@@ -49,4 +49,5 @@ export class UserService {
     const userId = this.getCurrentUser()?.id;
     return this.http.delete(`${this.apiUrl}/user/${userId}`);
   }
+
 }
