@@ -78,16 +78,17 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  onFileSelected(event: any): void {
-    const file = event.target.files[0];
-    if (!file) return;
+  onPhotoSelected(event: Event) {
+  const file = (event.target as HTMLInputElement).files?.[0];
+  if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const base64 = reader.result as string;
-      this.form.get('photo')?.setValue(base64);
-      this.userService.updateCurrentUser({ photo: base64 }).subscribe();
-    };
-    reader.readAsDataURL(file);
-  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    const base64 = reader.result as string;
+    this.form.get('photo')?.setValue(base64);
+    this.userService.updateCurrentUser({ photo: base64 });
+  };
+  reader.readAsDataURL(file);
+}
+
 }

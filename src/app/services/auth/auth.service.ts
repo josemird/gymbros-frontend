@@ -15,6 +15,11 @@ export class AuthService {
     this.isAuthenticated$.next(!!token);
 
     if (token) {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        this.userService.setCurrentUser(JSON.parse(storedUser));
+        this.userService.fetchCurrentUser();
+      }
       this.userService.fetchCurrentUser();
     }
   }

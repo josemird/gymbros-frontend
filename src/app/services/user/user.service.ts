@@ -16,13 +16,20 @@ export class UserService {
 
   fetchCurrentUser(): void {
     this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
-      next: user => this.currentUser.next(user),
+      next: user => {
+        this.currentUser.next(user);
+        localStorage.setItem('user', JSON.stringify(user));
+      },
       error: () => this.currentUser.next(null)
     });
   }
 
   getCurrentUser(): any {
     return this.currentUser.value;
+  }
+
+  setCurrentUser(user: any): void {
+    this.currentUser.next(user);
   }
 
   watchCurrentUser$(): Observable<any> {
