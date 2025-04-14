@@ -10,7 +10,12 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
+    const storedUser = localStorage.getItem('user');
+
     if (token) {
+      if (storedUser) {
+        this.setCurrentUser(JSON.parse(storedUser));
+      }
       this.fetchCurrentUser();
     }
   }
@@ -20,17 +25,7 @@ export class UserService {
   }
 
   fetchCurrentUser(): void {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      this.currentUser.next(null);
-      return;
-    }
-
-    const headers = {
-      Authorization: `Bearer ${token}`
-    };
-
-    this.http.get<any>(`${this.apiUrl}/profile`, { headers }).subscribe({
+    this.http.get<any>(`${this.apiUrl}/profile`).subscribe({
       next: user => {
         this.currentUser.next(user);
         localStorage.setItem('user', JSON.stringify(user));
