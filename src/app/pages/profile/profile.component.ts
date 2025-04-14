@@ -103,4 +103,5 @@ export class ProfileComponent implements OnInit {
     };
     reader.readAsDataURL(file);
   }
+
 }
