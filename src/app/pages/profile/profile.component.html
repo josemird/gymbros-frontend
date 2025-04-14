@@ -1,1 +1,55 @@
-<p>profile works!</p>
+<div *ngIf="loading">Cargando perfil...</div>
+
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label>Nombre</label>
+    <input formControlName="name" />
+  </div>
+
+  <div class="form-group">
+    <label>Nombre de usuario</label>
+    <input formControlName="username" />
+  </div>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input formControlName="email" />
+  </div>
+
+  <div class="form-group">
+    <label>Foto (URL)</label>
+    <input formControlName="photo" />
+  </div>
+
+  <div class="form-group">
+    <label>Gimnasio</label>
+    <input formControlName="gym" />
+  </div>
+
+  <div class="form-group">
+    <label>Edad</label>
+    <input formControlName="age" type="number" />
+  </div>
+
+  <div class="form-group">
+    <label>Ejercicios favoritos</label>
+    <input formControlName="favorite_exercises" />
+  </div>
+
+  <div class="form-group">
+    <label>Objetivos</label>
+    <input formControlName="goals" />
+  </div>
+
+  <div class="form-group">
+    <label>Hobbies</label>
+    <input formControlName="hobbies" />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Guardar cambios</button>
+  <button type="button" (click)="onChangePassword()">Cambiar contraseña</button>
+  <button type="button" (click)="onDeleteAccount()">Eliminar cuenta</button>
+
+  <p class="success" *ngIf="success">{{ success }}</p>
+  <p class="error" *ngIf="error">{{ error }}</p>
+</form>

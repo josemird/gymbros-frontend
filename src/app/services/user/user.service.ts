@@ -28,4 +28,20 @@ export class UserService {
   watchCurrentUser$(): Observable<any> {
     return this.currentUser.asObservable();
   }
+
+  updateCurrentUser(data: any): Observable<any> {
+    const userId = this.getCurrentUser()?.id;
+    return this.http.patch(`${this.apiUrl}/user/${userId}`, data);
+  }
+
+  changePassword(newPassword: string): Observable<any> {
+    const userId = this.getCurrentUser()?.id;
+    return this.http.patch(`${this.apiUrl}/user/${userId}`, { password: newPassword });
+  }
+
+  deleteCurrentUser(): Observable<any> {
+    const userId = this.getCurrentUser()?.id;
+    return this.http.delete(`${this.apiUrl}/user/${userId}`);
+  }
+
 }
