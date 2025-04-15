@@ -68,7 +68,7 @@
   margin-top: 2rem;
 
   .change-button {
-    align-self: center;
+    justify-items: center;;
     background: #f39c12;
     color: white;
     width: 40%;
@@ -108,7 +108,7 @@
 }
 
 .delete-button {
-  align-self: center;
+  align-content: center;
   margin-top: 1rem;
   background: #e74c3c;
   color: white;
