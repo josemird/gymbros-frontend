@@ -70,7 +70,7 @@
   .change-button {
     background: #f39c12;
     color: white;
-    width: 50%;
+    width: 40%;
     border: none;
     padding: 0.6rem;
     border-radius: 4px;
@@ -85,6 +85,7 @@
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
 
     input {
@@ -107,10 +108,11 @@
 }
 
 .delete-button {
-  margin-top: 1.25rem;
+  align-items: center;
+  margin-top: 1rem;
   background: #e74c3c;
   color: white;
-  width: 100%;
+  width: 40%;
   border: none;
   padding: 0.6rem;
   border-radius: 4px;
