@@ -28,26 +28,7 @@
     border-radius: 50%;
     border: 2px solid #1abc9c;
     cursor: pointer;
-    transition: transform 0.2s;
-    &:hover {
-      transform: scale(1.05);
-    }
   }
-}
-
-.filename {
-  text-align: center;
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.error-text {
-  color: #e74c3c;
-  text-align: center;
-  font-size: 0.9rem;
-  margin-top: -0.5rem;
-  margin-bottom: 1rem;
 }
 
 .field-row {

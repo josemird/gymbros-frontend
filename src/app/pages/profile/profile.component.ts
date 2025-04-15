@@ -91,32 +91,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  photoError: string | null = null;
-
   onPhotoSelected(event: Event) {
     const file = (event.target as HTMLInputElement).files?.[0];
     if (!file) return;
 
-    if (file.size > 2 * 1024 * 1024) {
-      this.photoError = 'La imagen no puede pesar más de 2MB';
-      return;
-    }
-
-    this.photoError = null;
-
-    const formData = new FormData();
-    formData.append('photo', file);
-
-    this.userService.uploadPhoto(formData).subscribe({
-      next: (res) => {
-        this.form.patchValue({ photo: res.filename });
-      },
-      error: () => {
-        this.photoError = 'Error al subir la imagen';
+    this.userService.uploadPhoto(file).subscribe({
+      next: res => {
+        this.form.get('photo')?.setValue(res.photo);
+        this.userService.fetchCurrentUser();
       }
     });
   }
-
-
 
 }
