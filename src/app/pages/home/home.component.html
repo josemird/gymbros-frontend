@@ -1,7 +1,11 @@
 <div *ngIf="!loading && users.length > 0">
   <div *ngFor="let user of users" class="user-card">
-    <img [src]="user.photo || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'" alt="Foto de perfil">
-    <h3>{{ user.name }}</h3>
+    <img
+    [src]="form.get('photo')?.value
+    ? 'https://vps-ff89e3e0.vps.ovh.net/uploads/' + form.get('photo')?.value
+    : 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
+    alt="Foto de perfil"
+    />    <h3>{{ user.name }}</h3>
 
     <div class="info-columns">
       <div class="column">

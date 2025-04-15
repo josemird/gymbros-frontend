@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
-import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +14,7 @@ export class HomeComponent implements OnInit {
 
   users: any[] = [];
   loading = true;
+form: any;
 
   ngOnInit() {
     this.loading = true;
