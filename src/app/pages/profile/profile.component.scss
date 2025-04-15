@@ -66,9 +66,12 @@
 
 .password-section {
   margin-top: 2rem;
+  display: flex;
+  justify-content: center;
 
   .change-button {
-    align-self: center;
+    display: flex;
+    justify-content: center;
     background: #f39c12;
     color: white;
     width: 40%;
@@ -108,10 +111,12 @@
 }
 
 .delete-button {
-  margin: 1rem auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
   background: #e74c3c;
   color: white;
-  width: 40%;
+  width: 100%;
   border: none;
   padding: 0.6rem;
   border-radius: 4px;
