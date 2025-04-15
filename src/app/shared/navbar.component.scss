@@ -22,15 +22,6 @@
     }
   }
 
-  button {
-    background: #e74c3c;
-    border: none;
-    padding: 0.5rem 1rem;
-    color: white;
-    cursor: pointer;
-    border-radius: 1.5px;
-  }
-
   .avatar-container {
     position: relative;
     cursor: pointer;
@@ -60,6 +51,7 @@
         padding: 0.5rem 1rem;
         text-align: left;
         background: none;
+        text-decoration: none;
         border: none;
         cursor: pointer;
         color: #333;
@@ -69,14 +61,14 @@
         }
       }
 
-      button {
-          background: #e74c3c;
-          border: none;
-          padding: 0.5rem 1rem;
-          color: white;
-          cursor: pointer;
-          border-radius: 1.5px;
-      }
+      // button {
+      //     background: #e74c3c;
+      //     border: none;
+      //     padding: 0.5rem 1rem;
+      //     color: white;
+      //     cursor: pointer;
+      //     border-radius: 1.5px;
+      // }
     }
   }
 
