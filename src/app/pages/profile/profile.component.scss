@@ -70,11 +70,9 @@
   justify-content: center;
 
   .change-button {
-    display: flex;
-    justify-content: center;
     background: #f39c12;
     color: white;
-    width: 40%;
+    width: 100%;
     border: none;
     padding: 0.6rem;
     border-radius: 4px;
@@ -111,8 +109,6 @@
 }
 
 .delete-button {
-  display: flex;
-  justify-content: center;
   margin-top: 1rem;
   background: #e74c3c;
   color: white;
