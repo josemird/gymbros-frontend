@@ -1,75 +1,33 @@
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  background: #222;
   padding: 1rem 2rem;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  color: white;
+  border-radius: 7px;
 
   .logo {
-    font-weight: 600;
-    font-size: 1.5rem;
-    color: #1abc9c;
     margin: 0;
   }
 
   .nav-links {
     display: flex;
-    gap: 1.5rem;
     list-style: none;
+    gap: 1rem;
 
-    li {
-      a {
-        text-decoration: none;
-        color: #333;
-        font-weight: 500;
-
-        &:hover {
-          color: #1abc9c;
-        }
-      }
+    a {
+      color: white;
+      text-decoration: none;
     }
   }
 
-  .avatar-container {
-    position: relative;
+  button {
+    background: #e74c3c;
+    border: none;
+    padding: 0.5rem 1rem;
+    color: white;
     cursor: pointer;
-
-    img {
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2px solid #1abc9c;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      right: 0;
-      top: 50px;
-      background: white;
-      border: 1px solid #ccc;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      display: flex;
-      flex-direction: column;
-      z-index: 99;
-
-      a,
-      button {
-        text-align: left;
-        padding: 0.5rem 0;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-weight: 500;
-        color: #333;
-
-        &:hover {
-          color: #1abc9c;
-        }
-      }
-    }
+    border-radius: 1.5px;
   }
 }
