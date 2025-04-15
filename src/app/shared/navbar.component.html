@@ -1,13 +1,17 @@
-<nav *ngIf="isLoggedIn$ | async" class="navbar">
+<nav class="navbar">
   <h1 class="logo">Gymbros</h1>
 
   <ul class="nav-links">
     <li><a routerLink="/home">Home</a></li>
+    <li><a routerLink="/likes">Likes</a></li>
     <li><a routerLink="/messages">Mensajes</a></li>
-    <li><a routerLink="/likes">Favs</a></li>
-    <li><a routerLink="/profile">Perfil</a></li>
-
   </ul>
 
-  <button (click)="logout()">Logout</button>
+  <div class="avatar-container" (click)="toggleMenu()">
+    <img [src]="'https://vps-ff89e3e0.vps.ovh.net/uploads/' + currentUser?.photo || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'" alt="Avatar">
+    <div class="dropdown-menu" *ngIf="menuOpen">
+      <a routerLink="/profile">Perfil</a>
+      <button (click)="logout()">Logout</button>
+    </div>
+  </div>
 </nav>
