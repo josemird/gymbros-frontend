@@ -1,53 +1,35 @@
-<div class="container">
-  <!-- Imagen de perfil -->
-  <label>
-    <img
-      [src]="form.value.photo || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
-      alt="Foto de perfil"
-      class="profile-pic"
-    />
-    <input type="file" (change)="onPhotoSelected($event)" />
-  </label>
+<div class="profile-container">
+  <div class="profile-card">
+    <label class="image-upload">
+      <img [src]="form.value.photo || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'" alt="Foto de perfil" />
+      <input type="file" accept="image/*" (change)="onPhotoSelected($event)" hidden />
+    </label>
 
-  <!-- Campos editables -->
-  <div class="form-row" *ngFor="let field of ['name', 'username', 'email', 'gym', 'age', 'favorite_exercises', 'goals', 'hobbies']">
-    <input
-      [formControlName]="field"
-      [readonly]="editingField !== field"
-      [type]="field === 'age' ? 'number' : 'text'"
-      placeholder="{{ field | titlecase }}"
-    />
-    <button type="button" (click)="onEdit(field)">
-      {{ editingField === field ? 'Guardar' : 'Editar' }}
-    </button>
-  </div>
-
-  <!-- Cambiar contraseña -->
-  <div class="actions">
-    <button type="button" (click)="showPasswordChange = !showPasswordChange">
-      {{ showPasswordChange ? 'Cancelar cambio de contraseña' : 'Cambiar contraseña' }}
-    </button>
-
-    <div *ngIf="showPasswordChange">
-      <div class="form-row">
-        <input
-          type="password"
-          [(ngModel)]="newPassword"
-          placeholder="Nueva contraseña"
-        />
+    <form [formGroup]="form">
+      <div class="field-row" *ngFor="let field of ['name', 'username', 'email', 'gym', 'age', 'favorite_exercises', 'goals', 'hobbies']">
+        <label>{{ field | titlecase }}</label>
+        <div class="input-group">
+          <input [formControlName]="field" [readonly]="editingField !== field" />
+          <button type="button" (click)="onEdit(field)">
+            {{ editingField === field ? 'Guardar' : 'Editar' }}
+          </button>
+        </div>
       </div>
-      <div class="form-row">
-        <input
-          type="password"
-          [(ngModel)]="confirmPassword"
-          placeholder="Confirmar contraseña"
-        />
+    </form>
+
+    <div class="password-section">
+      <button (click)="showPasswordChange = !showPasswordChange">
+        Cambiar contraseña
+      </button>
+
+      <div *ngIf="showPasswordChange" class="password-form">
+        <input type="password" placeholder="Nueva contraseña" [(ngModel)]="newPassword" />
+        <input type="password" placeholder="Confirmar contraseña" [(ngModel)]="confirmPassword" />
+        <button (click)="onPasswordChange()">Guardar contraseña</button>
+        <p *ngIf="error">{{ error }}</p>
       </div>
-      <div class="error" *ngIf="error">{{ error }}</div>
-      <button type="button" (click)="onPasswordChange()">Guardar contraseña</button>
     </div>
 
-    <!-- Eliminar cuenta -->
-    <button type="button" (click)="onDelete()">Eliminar cuenta</button>
+    <button class="delete-button" (click)="onDelete()">Eliminar cuenta</button>
   </div>
 </div>
