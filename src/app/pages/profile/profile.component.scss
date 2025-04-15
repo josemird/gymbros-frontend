@@ -67,6 +67,19 @@
 .password-section {
   margin-top: 1rem;
 
+  .change-button {
+    background: #f39c12;
+    color: white;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      background: #e67e22;
+    }
+  }
+
   .password-form {
     margin-top: 1rem;
     display: flex;
