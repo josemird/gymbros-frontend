@@ -50,12 +50,10 @@ export class UserService {
     return this.http.delete(`${this.apiUrl}/user/${userId}`);
   }
 
-  uploadPhoto(file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('photo', file);
-
+  uploadPhoto(formData: FormData): Observable<any> {
     return this.http.post(`${this.apiUrl}/user/photo`, formData);
   }
+
 
 
 }
