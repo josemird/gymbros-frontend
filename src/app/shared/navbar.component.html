@@ -1,13 +1,18 @@
 <nav *ngIf="isLoggedIn$ | async" class="navbar">
-  <h1 class="logo">Gymbros</h1>
+    <h1 class="logo">Gymbros</h1>
 
-  <ul class="nav-links">
-    <li><a routerLink="/home">Home</a></li>
-    <li><a routerLink="/messages">Mensajes</a></li>
-    <li><a routerLink="/likes">Favs</a></li>
-    <li><a routerLink="/profile">Perfil</a></li>
+    <ul class="nav-links">
+      <li><a routerLink="/home">Home</a></li>
+      <li><a routerLink="/messages">Mensajes</a></li>
+      <li><a routerLink="/likes">Favs</a></li>
+    </ul>
 
-  </ul>
+    <div class="avatar-container" (click)="toggleDropdown()" tabindex="0">
+      <img [src]="user?.photo ? backendUrl + '/uploads/' + user.photo : defaultAvatar" alt="Avatar" class="avatar" />
+      <div class="dropdown" *ngIf="showDropdown">
+        <a routerLink="/profile">Perfil</a>
+        <button (click)="logout()">Logout</button>
+      </div>
+    </div>
 
-  <button (click)="logout()">Logout</button>
 </nav>

@@ -1,33 +1,43 @@
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #222;
-  padding: 1rem 2rem;
-  color: white;
-  border-radius: 7px;
+.avatar-container {
+  position: relative;
+  cursor: pointer;
 
-  .logo {
-    margin: 0;
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #1abc9c;
+    object-fit: cover;
   }
 
-  .nav-links {
+  .dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     display: flex;
-    list-style: none;
-    gap: 1rem;
+    flex-direction: column;
+    min-width: 120px;
+    z-index: 10;
 
-    a {
-      color: white;
-      text-decoration: none;
+    a, button {
+      padding: 0.5rem 1rem;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #333;
+
+      &:hover {
+        background: #f0f0f0;
+      }
     }
-  }
 
-  button {
-    background: #e74c3c;
-    border: none;
-    padding: 0.5rem 1rem;
-    color: white;
-    cursor: pointer;
-    border-radius: 1.5px;
+    button {
+      border-top: 1px solid #eee;
+    }
   }
 }
