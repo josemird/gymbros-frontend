@@ -1,0 +1,28 @@
+<div class="user-card">
+  <img
+    [src]="user.photo ? backendUrl + user.photo : defaultAvatar"
+    alt="Foto de perfil"
+  />
+
+  <h3>{{ user.name }}</h3>
+
+  <div class="info-columns">
+    <div class="column">
+      <p><strong>Usuario:</strong> {{ user.username }}</p>
+      <p><strong>Edad:</strong> {{ user.age || 'No indicada' }}</p>
+      <p><strong>Gimnasio:</strong> {{ user.gym || 'No indicado' }}</p>
+    </div>
+    <div class="column">
+      <p><strong>Hobbies:</strong> {{ user.hobbies || 'No indicado' }}</p>
+      <p><strong>Objetivos:</strong> {{ user.goals || 'No indicado' }}</p>
+      <p><strong>Ejercicios favoritos:</strong> {{ user.favorite_exercises || 'No indicado' }}</p>
+    </div>
+  </div>
+
+  <div class="button-row">
+    <button class="like" (click)="onLike?.()">
+      {{ user.liked ? '💔 Quitar' : '❤️ Like' }}
+    </button>
+    <button class="message" (click)="onMessage?.()">💬 Mensaje</button>
+  </div>
+</div>

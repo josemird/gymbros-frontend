@@ -1,1 +1,12 @@
-<p>likes works!</p>
+<div *ngIf="!loading && likedUsers.length > 0">
+  <app-user-card
+    *ngFor="let user of likedUsers"
+    [user]="user"
+    [onLike]="toggleLike.bind(this, user)"
+    [onMessage]="goToMessages.bind(this, user.id)"
+  />
+</div>
+
+<div *ngIf="!loading && likedUsers.length === 0">
+  <p>No tienes favoritos aún.</p>
+</div>
