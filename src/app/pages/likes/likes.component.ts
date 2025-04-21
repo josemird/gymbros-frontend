@@ -23,7 +23,8 @@ export class LikesComponent implements OnInit {
       next: (res) => {
         this.likedUsers = res.likes.map(like => ({
           ...like['liked_user'],
-          liked: true
+          liked: true,
+          liked_user_id: like.liked_user_id
         }));
         this.loading = false;
       },
@@ -34,7 +35,7 @@ export class LikesComponent implements OnInit {
   }
 
   toggleLike(user: any) {
-    this.likeService.unlikeUser(user.id).subscribe(() => {
+    this.likeService.unlikeUser(user.liked_user_id).subscribe(() => {
       this.likedUsers = this.likedUsers.filter(u => u.id !== user.id);
     });
   }
