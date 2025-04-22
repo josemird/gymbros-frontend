@@ -1,4 +1,16 @@
 <div class="chat-container" *ngIf="!loading">
+  <div class="chat-header" *ngIf="receiverUser">
+    <button class="back" (click)="router.navigate(['/messages'])">⬅</button>
+    <img
+      [src]="receiverUser.photo ? backendUrl + receiverUser.photo : defaultAvatar"
+      alt="Avatar"
+    />
+    <div class="user-info">
+      <h4>{{ receiverUser.name }}</h4>
+      <p>&#64;{{ receiverUser.username }}</p>
+    </div>
+  </div>
+
   <div class="messages">
     <div
       *ngFor="let msg of messages"
