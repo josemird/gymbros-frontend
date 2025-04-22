@@ -1,1 +1,18 @@
-<p>messages works!</p>
+<div *ngIf="!loading && conversations.length > 0" class="chat-list">
+  <div *ngFor="let user of conversations" class="chat-card" (click)="openChat(user.id)">
+    <img
+      [src]="user.photo
+        ? 'https://vps-ff89e3e0.vps.ovh.net/uploads/' + user.photo
+        : 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
+      alt="Avatar"
+    />
+    <div>
+      <h4>{{ user.name }}</h4>
+      <p>&#64;{{ user.username }}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loading && conversations.length === 0">
+  <p>No tienes conversaciones aún.</p>
+</div>

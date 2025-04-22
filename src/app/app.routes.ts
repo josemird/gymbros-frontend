@@ -16,7 +16,9 @@ export const appRoutes: Routes = [
   { path: REGISTER_PATH, loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent), canActivate: [guestGuard] },
 
   { path: HOME_PATH, loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), canActivate: [authGuard] },
-  { path: PROFILE_PATH, loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent), canActivate: [authGuard] },
-  { path: MESSAGES_PATH, loadComponent: () => import('./pages/messages/messages.component').then(m => m.MessagesComponent), canActivate: [authGuard] },
   { path: LIKES_PATH, loadComponent: () => import('./pages/likes/likes.component').then(m => m.LikesComponent), canActivate: [authGuard] },
+  { path: MESSAGES_PATH, loadComponent: () => import('./pages/messages/messages.component').then(m => m.MessagesComponent), canActivate: [authGuard] },
+  { path: `${MESSAGES_PATH}/:id`, loadComponent: () => import('./pages/messages/chat/chat.component').then(m => m.ChatComponent), canActivate: [authGuard] },
+  { path: PROFILE_PATH, loadComponent: () => import('./pages/profile/profile.component').then(m => m.ProfileComponent), canActivate: [authGuard] },
+
 ];
