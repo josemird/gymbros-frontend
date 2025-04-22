@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../../../services/message/message.service';
@@ -17,6 +17,8 @@ export class ChatComponent implements OnInit {
   private messageService = inject(MessageService);
   private userService = inject(UserService);
   router = inject(Router);
+
+  @ViewChild('messagesContainer') messagesContainer!: ElementRef;
 
   currentUser: any;
   receiverId!: number;
@@ -47,11 +49,20 @@ export class ChatComponent implements OnInit {
           );
         });
         this.loading = false;
+        this.scrollToBottom();
       },
       error: () => {
         this.loading = false;
       }
     });
+  }
+
+  scrollToBottom() {
+    setTimeout(() => {
+      if (this.messagesContainer) {
+        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      }
+    }, 0);
   }
 
   sendMessage() {
@@ -61,6 +72,7 @@ export class ChatComponent implements OnInit {
       next: (res) => {
         this.messages.push(res.message);
         this.newMessage = '';
+        this.scrollToBottom();
       }
     });
   }

@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="messages">
+  <div class="messages" #messagesContainer>
     <div
       *ngFor="let msg of messages"
       [class.outgoing]="msg.sender_id === currentUser.id"
