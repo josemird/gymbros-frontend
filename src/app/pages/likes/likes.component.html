@@ -3,7 +3,6 @@
     *ngFor="let user of likedUsers"
     [user]="user"
     [onLike]="toggleLike.bind(this, user)"
-    [onMessage]="goToMessages.bind(this, user.id)"
   />
 </div>
 

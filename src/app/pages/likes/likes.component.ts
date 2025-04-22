@@ -40,7 +40,4 @@ export class LikesComponent implements OnInit {
     });
   }
 
-  goToMessages(userId: number) {
-    console.log('Abrir chat con usuario ID:', userId);
-  }
 }

@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { LikeService } from '../../services/like/like.service';
 import { UserCardComponent } from '../../shared/user-card/user-card.component';
@@ -17,7 +18,6 @@ export class HomeComponent implements OnInit {
 
   users: any[] = [];
   loading = true;
-goToMessagesHandler: any;
 
   ngOnInit() {
     this.loading = true;
@@ -57,7 +57,4 @@ goToMessagesHandler: any;
     }
   }
 
-  goToMessages(userId: number) {
-    console.log('Abrir chat con usuario ID:', userId);
-  }
 }
