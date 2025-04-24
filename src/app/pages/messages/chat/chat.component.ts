@@ -93,7 +93,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     console.log('Enviando mensaje:', this.receiverId, this.newMessage);
 
 
-    this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
+    this.messageService.sendMessage(this.receiverId, this.newMessage.trim()).subscribe({
       next: (res) => {
         this.messages.push(res.message);
         this.newMessage = '';

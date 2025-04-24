@@ -11,10 +11,10 @@ export class MessageService {
     return this.http.get(`${this.apiUrl}/message`);
   }
 
-  sendMessage(receiver_id: number, content: string): Observable<any> {
+  sendMessage(receiver_id: number, content: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/message`, {
       receiver_id,
-      content: String(content)
+      content: typeof content === 'string' ? content : JSON.stringify(content)
     });
   }
 
