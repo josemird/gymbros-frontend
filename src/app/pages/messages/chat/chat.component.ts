@@ -56,6 +56,9 @@ export class ChatComponent implements OnInit {
         this.loading = false;
       }
     });
+
+    this.loadMessages();
+
   }
 
   scrollToBottom() {
@@ -74,6 +77,25 @@ export class ChatComponent implements OnInit {
         this.messages.push(res.message);
         this.newMessage = '';
         this.scrollToBottom();
+      }
+    });
+  }
+
+  loadMessages() {
+    this.messageService.getMessages().subscribe({
+      next: (res) => {
+        this.messages = res.messages.filter((msg: any) => {
+          return (
+            (msg.sender_id === this.currentUser.id && msg.receiver_id === this.receiverId) ||
+            (msg.sender_id === this.receiverId && msg.receiver_id === this.currentUser.id)
+          );
+        });
+        this.loading = false;
+        this.scrollToBottom();
+        this.markMessagesAsRead();
+      },
+      error: () => {
+        this.loading = false;
       }
     });
   }

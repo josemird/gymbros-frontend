@@ -18,7 +18,12 @@
       [class.incoming]="msg.sender_id !== currentUser.id"
       class="message"
     >
-      {{ msg.content }}
+      <span class="text">{{ msg.content }}</span>
+      <span
+        *ngIf="msg.sender_id !== currentUser.id"
+        class="read-indicator"
+        [class.read]="msg.read"
+      ></span>
     </div>
   </div>
 

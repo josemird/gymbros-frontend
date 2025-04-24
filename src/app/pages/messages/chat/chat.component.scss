@@ -92,4 +92,27 @@
       background-color: #16a085;
     }
   }
+
+  .message {
+    position: relative;
+
+    .text {
+      display: inline-block;
+    }
+
+    .read-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: 8px;
+      border-radius: 50%;
+      background-color: gray;
+      vertical-align: middle;
+
+      &.read {
+        background-color: purple;
+      }
+    }
+  }
+
 }
