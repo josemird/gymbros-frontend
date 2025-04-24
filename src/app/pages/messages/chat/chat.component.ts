@@ -50,6 +50,7 @@ export class ChatComponent implements OnInit {
         });
         this.loading = false;
         this.scrollToBottom();
+        this.markMessagesAsRead();
       },
       error: () => {
         this.loading = false;
@@ -76,4 +77,16 @@ export class ChatComponent implements OnInit {
       }
     });
   }
+
+  markMessagesAsRead() {
+    const unreadMessages = this.messages.filter(
+      msg => msg.receiver_id === this.currentUser.id && !msg.read
+    );
+
+    unreadMessages.forEach(msg => {
+      this.messageService.markAsRead(msg.id).subscribe();
+      msg.read = true;
+    });
+  }
+
 }
