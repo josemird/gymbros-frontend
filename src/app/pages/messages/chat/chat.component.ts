@@ -101,8 +101,6 @@ export class ChatComponent implements OnInit, OnDestroy {
       }
     });
 
-    console.log('Mensaje enviado:', this.messageService);
-
   }
 
   markMessagesAsRead() {

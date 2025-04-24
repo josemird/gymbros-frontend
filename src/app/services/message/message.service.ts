@@ -14,7 +14,7 @@ export class MessageService {
   sendMessage(receiver_id: number, content: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/message`, {
       receiver_id,
-      content
+      content: String(content)
     });
   }
 
