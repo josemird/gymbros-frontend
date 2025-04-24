@@ -90,23 +90,18 @@ export class ChatComponent implements OnInit, OnDestroy {
   sendMessage() {
     if (!this.newMessage.trim()) return;
 
-    const cleanMessage = this.newMessage.trim();
+    console.log('Enviando mensaje:', this.receiverId, this.newMessage);
 
-    console.log('📤 Enviando mensaje:', {
-      receiver_id: this.receiverId,
-      content: cleanMessage
-    });
 
-    this.messageService.sendMessage(this.receiverId, cleanMessage).subscribe({
+    this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
       next: (res) => {
-        console.log('📥 Mensaje recibido del backend:', res.message);
         this.messages.push(res.message);
         this.newMessage = '';
         this.scrollToBottom();
       }
     });
-  }
 
+  }
 
   markMessagesAsRead() {
     const unreadMessages = this.messages.filter(

@@ -11,12 +11,12 @@ export class MessageService {
     return this.http.get(`${this.apiUrl}/message`);
   }
 
-sendMessage(receiver_id: number, content: string): Observable<any> {
-  return this.http.post(`${this.apiUrl}/message`, {
-    receiver_id,
-    content: typeof content === 'string' ? content : String(content)
-  });
-}
+  sendMessage(receiver_id: number, content: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/message`, {
+      receiver_id,
+      content
+    });
+  }
 
   markAsRead(messageId: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/message/${messageId}/read`, {});
