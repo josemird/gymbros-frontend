@@ -50,15 +50,11 @@ export class ChatComponent implements OnInit {
         });
         this.loading = false;
         this.scrollToBottom();
-        this.markMessagesAsRead();
       },
       error: () => {
         this.loading = false;
       }
     });
-
-    this.loadMessages();
-
   }
 
   scrollToBottom() {
@@ -69,38 +65,19 @@ export class ChatComponent implements OnInit {
     }, 0);
   }
 
-  sendMessage() {
-    if (!this.newMessage.trim()) return;
+    sendMessage() {
+      if (!this.newMessage.trim()) return;
 
-    this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
-      next: (res) => {
-        this.messages.push(res.message);
-        this.newMessage = '';
-        this.scrollToBottom();
-      }
-    });
-  }
+      this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
+        next: (res) => {
+          this.messages.push(res.message);
+          this.newMessage = '';
+          this.scrollToBottom();
+        }
+      });
+    }
 
-  loadMessages() {
-    this.messageService.getMessages().subscribe({
-      next: (res) => {
-        this.messages = res.messages.filter((msg: any) => {
-          return (
-            (msg.sender_id === this.currentUser.id && msg.receiver_id === this.receiverId) ||
-            (msg.sender_id === this.receiverId && msg.receiver_id === this.currentUser.id)
-          );
-        });
-        this.loading = false;
-        this.scrollToBottom();
-        this.markMessagesAsRead();
-      },
-      error: () => {
-        this.loading = false;
-      }
-    });
-  }
-
-  markMessagesAsRead() {
+    markMessagesAsRead() {
     const unreadMessages = this.messages.filter(
       msg => msg.receiver_id === this.currentUser.id && !msg.read
     );
