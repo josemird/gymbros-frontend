@@ -100,6 +100,9 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.scrollToBottom();
       }
     });
+
+    console.log('Mensaje enviado:', this.messageService);
+
   }
 
   markMessagesAsRead() {
