@@ -1,9 +1,10 @@
-import { Component, inject, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../../../services/message/message.service';
 import { UserService } from '../../../services/user/user.service';
 import { FormsModule } from '@angular/forms';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
@@ -12,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   private route = inject(ActivatedRoute);
   private messageService = inject(MessageService);
   private userService = inject(UserService);
@@ -30,6 +31,8 @@ export class ChatComponent implements OnInit {
   backendUrl = 'https://vps-ff89e3e0.vps.ovh.net/uploads/';
   defaultAvatar = 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg';
 
+  private pollingSubscription: Subscription | null = null;
+
   ngOnInit() {
     this.receiverId = Number(this.route.snapshot.paramMap.get('id'));
     this.currentUser = this.userService.getCurrentUser();
@@ -40,16 +43,35 @@ export class ChatComponent implements OnInit {
       }
     });
 
+    this.fetchMessages();
+
+    this.pollingSubscription = interval(3000).subscribe(() => {
+      this.fetchMessages();
+    });
+  }
+
+  ngOnDestroy() {
+    this.pollingSubscription?.unsubscribe();
+  }
+
+  fetchMessages() {
     this.messageService.getMessages().subscribe({
       next: (res) => {
-        this.messages = res.messages.filter((msg: any) => {
+        const filtered = res.messages.filter((msg: any) => {
           return (
             (msg.sender_id === this.currentUser.id && msg.receiver_id === this.receiverId) ||
             (msg.sender_id === this.receiverId && msg.receiver_id === this.currentUser.id)
           );
         });
+
+        const newMessages = filtered.length > this.messages.length;
+        this.messages = filtered;
         this.loading = false;
-        this.scrollToBottom();
+
+        if (newMessages) {
+          this.scrollToBottom();
+          this.markMessagesAsRead();
+        }
       },
       error: () => {
         this.loading = false;
@@ -65,19 +87,19 @@ export class ChatComponent implements OnInit {
     }, 0);
   }
 
-    sendMessage() {
-      if (!this.newMessage.trim()) return;
+  sendMessage() {
+    if (!this.newMessage.trim()) return;
 
-      this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
-        next: (res) => {
-          this.messages.push(res.message);
-          this.newMessage = '';
-          this.scrollToBottom();
-        }
-      });
-    }
+    this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
+      next: (res) => {
+        this.messages.push(res.message);
+        this.newMessage = '';
+        this.scrollToBottom();
+      }
+    });
+  }
 
-    markMessagesAsRead() {
+  markMessagesAsRead() {
     const unreadMessages = this.messages.filter(
       msg => msg.receiver_id === this.currentUser.id && !msg.read
     );
@@ -87,5 +109,4 @@ export class ChatComponent implements OnInit {
       msg.read = true;
     });
   }
-
 }
