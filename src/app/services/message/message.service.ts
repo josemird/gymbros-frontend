@@ -21,4 +21,13 @@ export class MessageService {
   markAsRead(messageId: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/message/${messageId}/read`, {});
   }
+
+  getUnreadMessages(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/message/unread`);
+  }
+
+  getUnreadCounts(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/message/unread/count`);
+  }
+
 }

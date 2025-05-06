@@ -18,6 +18,7 @@ export class MessagesComponent implements OnInit {
 
   currentUser: any;
   conversations: any[] = [];
+  unreadCountsMap: { [key: number]: number } = {};
   loading = true;
 
   ngOnInit() {
@@ -30,19 +31,34 @@ export class MessagesComponent implements OnInit {
 
         res.messages.forEach((msg: any) => {
           const otherUser = msg.sender_id === this.currentUser.id ? msg.receiver : msg.sender;
-
           if (!uniqueUsers[otherUser.id]) {
             uniqueUsers[otherUser.id] = otherUser;
           }
         });
 
         this.conversations = Object.values(uniqueUsers);
+        this.fetchUnreadCounts();
         this.loading = false;
       },
       error: () => {
         this.loading = false;
       }
     });
+  }
+
+  fetchUnreadCounts() {
+    this.messageService.getUnreadCounts().subscribe({
+      next: (res) => {
+        this.unreadCountsMap = {};
+        res.counts.forEach((entry: any) => {
+          this.unreadCountsMap[entry.sender_id] = entry.count;
+        });
+      }
+    });
+  }
+
+  hasUnread(userId: number): boolean {
+    return this.unreadCountsMap[userId] > 0;
   }
 
   openChat(userId: number) {

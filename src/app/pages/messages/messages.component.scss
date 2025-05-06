@@ -41,4 +41,14 @@
     color: #888;
     font-size: 0.9rem;
   }
+
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-left: 6px;
+    background-color: #9b59b6;
+    border-radius: 50%;
+  }
+
 }

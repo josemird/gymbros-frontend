@@ -1,18 +1,24 @@
 <nav *ngIf="isLoggedIn$ | async" class="navbar">
-    <h1 class="logo">Gymbros</h1>
+  <h1 class="logo">Gymbros</h1>
 
-    <ul class="nav-links">
-      <li><a routerLink="/home">Home</a></li>
-      <li><a routerLink="/messages">Mensajes</a></li>
-      <li><a routerLink="/likes">Favs</a></li>
-    </ul>
+  <ul class="nav-links">
+    <li>
+      <a routerLink="/home">Home</a>
+    </li>
+    <li class="messages-link">
+      <a routerLink="/messages">
+        Mensajes
+        <span *ngIf="hasUnreadMessages" class="notification-dot"></span>
+      </a>
+    </li>
+    <li><a routerLink="/likes">Favs</a></li>
+  </ul>
 
-    <div class="avatar-container" (click)="toggleDropdown()" tabindex="0">
-      <img [src]="user?.photo ? backendUrl + '/uploads/' + user.photo : defaultAvatar" alt="Avatar" class="avatar" />
-      <div class="dropdown" *ngIf="showDropdown">
-        <a routerLink="/profile">Perfil</a>
-        <button (click)="logout()">Logout</button>
-      </div>
+  <div class="avatar-container" (click)="toggleDropdown()" tabindex="0">
+    <img [src]="user?.photo ? backendUrl + '/uploads/' + user.photo : defaultAvatar" alt="Avatar" class="avatar" />
+    <div class="dropdown" *ngIf="showDropdown">
+      <a routerLink="/profile">Perfil</a>
+      <button (click)="logout()">Logout</button>
     </div>
-
+  </div>
 </nav>
