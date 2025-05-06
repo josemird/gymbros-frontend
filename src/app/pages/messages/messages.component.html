@@ -6,12 +6,9 @@
         : 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
       alt="Avatar"
     />
-    <div class="info">
+    <div>
       <h4>{{ user.name }}</h4>
-      <p>
-        &#64;{{ user.username }}
-        <span *ngIf="hasUnread(user.id)" class="dot"></span>
-      </p>
+      <p>&#64;{{ user.username }}</p>
     </div>
   </div>
 </div>
