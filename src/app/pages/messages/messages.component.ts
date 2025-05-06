@@ -1,9 +1,8 @@
-import { Component, inject, OnInit, OnDestroy } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MessageService } from '../../services/message/message.service';
 import { UserService } from '../../services/user/user.service';
-import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-messages',
@@ -12,7 +11,7 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './messages.component.html',
   styleUrl: './messages.component.scss'
 })
-export class MessagesComponent implements OnInit, OnDestroy {
+export class MessagesComponent implements OnInit {
   private messageService = inject(MessageService);
   private userService = inject(UserService);
   private router = inject(Router);
@@ -21,7 +20,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
   conversations: any[] = [];
   unreadCountsMap: { [key: number]: number } = {};
   loading = true;
-  private pollingSubscription: Subscription | null = null;
 
   ngOnInit() {
     this.loading = true;
@@ -41,19 +39,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
         this.conversations = Object.values(uniqueUsers);
         this.fetchUnreadCounts();
         this.loading = false;
-
-        this.pollingSubscription = interval(3000).subscribe(() => {
-          this.fetchUnreadCounts();
-        });
       },
       error: () => {
         this.loading = false;
       }
     });
-  }
-
-  ngOnDestroy() {
-    this.pollingSubscription?.unsubscribe();
   }
 
   fetchUnreadCounts() {
