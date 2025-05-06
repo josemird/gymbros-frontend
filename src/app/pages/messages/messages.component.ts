@@ -52,7 +52,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.pollingSub?.unsubscribe();
   }
 
