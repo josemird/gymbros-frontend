@@ -8,9 +8,11 @@
     />
     <div class="info">
       <h4>{{ user.name }}</h4>
-      <p>&#64;{{ user.username }}</p>
+      <p>
+        &#64;{{ user.username }}
+        <span *ngIf="hasUnread(user.id)" class="dot"></span>
+      </p>
     </div>
-    <span *ngIf="hasUnread(user.id)" class="notification-dot"></span>
   </div>
 </div>
 
