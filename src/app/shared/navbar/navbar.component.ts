@@ -1,10 +1,10 @@
-import { Component, inject, OnInit, HostListener } from '@angular/core';
+import { Component, inject, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { UserService } from '../../services/user/user.service';
 import { MessageService } from '../../services/message/message.service';
-import { Observable } from 'rxjs';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   private auth = inject(AuthService);
   private router = inject(Router);
   private userService = inject(UserService);
@@ -27,16 +27,24 @@ export class NavbarComponent implements OnInit {
   showDropdown = false;
   hasUnreadMessages = false;
 
+  private pollingSub: Subscription | null = null;
+
   ngOnInit() {
     this.userService.watchCurrentUser$().subscribe(user => {
       this.user = user;
     });
 
-    this.messageService.getUnreadMessages().subscribe({
-      next: (res) => {
-        this.hasUnreadMessages = res.messages.length > 0;
-      }
+    this.pollingSub = interval(3000).subscribe(() => {
+      this.messageService.getUnreadMessages().subscribe({
+        next: (res) => {
+          this.hasUnreadMessages = res.messages.length > 0;
+        }
+      });
     });
+  }
+
+  ngOnDestroy() {
+    this.pollingSub?.unsubscribe();
   }
 
   toggleDropdown() {

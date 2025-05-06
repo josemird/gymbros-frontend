@@ -64,12 +64,14 @@ export class ChatComponent implements OnInit, OnDestroy {
           );
         });
 
-        const newMessages = filtered.length > this.messages.length;
+        const previousUnread = this.messages.filter(m => !m.read && m.receiver_id === this.currentUser.id).length;
+        const newUnread = filtered.filter((m: { read: any; receiver_id: any; }) => !m.read && m.receiver_id === this.currentUser.id).length;
+
         this.messages = filtered;
         this.loading = false;
+        this.scrollToBottom();
 
-        if (newMessages) {
-          this.scrollToBottom();
+        if (newUnread > 0 || previousUnread !== newUnread) {
           this.markMessagesAsRead();
         }
       },
@@ -90,9 +92,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   sendMessage() {
     if (!this.newMessage.trim()) return;
 
-    console.log('Enviando mensaje:', this.receiverId, this.newMessage);
-
-
     this.messageService.sendMessage(this.receiverId, this.newMessage).subscribe({
       next: (res) => {
         this.messages.push(res.message);
@@ -100,7 +99,6 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.scrollToBottom();
       }
     });
-
   }
 
   markMessagesAsRead() {
