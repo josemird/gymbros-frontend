@@ -2,7 +2,8 @@
   <div class="chat-header" *ngIf="receiverUser">
     <button class="back" (click)="router.navigate(['/messages'])">⬅</button>
     <img
-      [src]="receiverUser.photo ? backendUrl + receiverUser.photo : defaultAvatar"
+      [src]="receiverUser.photo
+      || defaultAvatar"
       alt="Avatar"
     />
     <div class="user-info">
