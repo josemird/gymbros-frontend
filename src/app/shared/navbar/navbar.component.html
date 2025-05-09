@@ -15,7 +15,7 @@
   </ul>
 
   <div class="avatar-container" (click)="toggleDropdown()" tabindex="0">
-    <img [src]="user.photo || defaultAvatar" alt="Foto de perfil" />
+    <img [src]="user?.photo ? backendUrl + '/uploads/' + user.photo : defaultAvatar" alt="Avatar" class="avatar" />
     <div class="dropdown" *ngIf="showDropdown">
       <a routerLink="/profile">Perfil</a>
       <button (click)="logout()">Logout</button>
