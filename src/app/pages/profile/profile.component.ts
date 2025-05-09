@@ -91,33 +91,16 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  // onPhotoSelected(event: Event) {
-  //   const file = (event.target as HTMLInputElement).files?.[0];
-  //   if (!file) return;
-
-  //   this.userService.uploadPhoto(file).subscribe({
-  //     next: res => {
-  //       this.form.get('photo')?.setValue(res.photo);
-  //       this.userService.fetchCurrentUser();
-  //     }
-  //   });
-  // }
-
   onPhotoSelected(event: Event) {
-  const file = (event.target as HTMLInputElement).files?.[0];
-  if (!file) return;
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) return;
 
-  const reader = new FileReader();
-  reader.onload = () => {
-    this.form.get('photo')?.setValue(typeof reader.result === 'string' ? reader.result : null); // Mostrar preview inmediata
-  };
-  reader.readAsDataURL(file); // Convierte el archivo a base64 para mostrarlo
-
-  this.userService.uploadPhoto(file).subscribe({
-    next: res => {
-      this.userService.fetchCurrentUser(); // Luego sincroniza el usuario real desde el backend
-    }
-  });
-}
+    this.userService.uploadPhoto(file).subscribe({
+      next: res => {
+        this.form.get('photo')?.setValue(res.photo);
+        this.userService.fetchCurrentUser();
+      }
+    });
+  }
 
 }
