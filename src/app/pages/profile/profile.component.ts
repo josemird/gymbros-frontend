@@ -99,6 +99,7 @@ export class ProfileComponent implements OnInit {
       next: res => {
         this.form.get('photo')?.setValue(res.photo);
         this.userService.fetchCurrentUser();
+        location.reload();
       }
     });
   }
