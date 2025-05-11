@@ -25,12 +25,12 @@
       <div class="field-row">
         <label>Gimnasio</label>
         <div class="input-group">
-          <select [formControlName]="'gym'" [disabled]="editingField !== 'gym'">
+          <select [formControlName]="'gym_id'" [disabled]="editingField !== 'gym_id'">
             <option value="">Selecciona un gimnasio</option>
-            <option *ngFor="let gym of gyms" [value]="gym.name">{{ gym.name }}</option>
+            <option *ngFor="let gym of gyms" [value]="gym.id">{{ gym.name }}</option>
           </select>
-          <button type="button" (click)="onEdit('gym')">
-            {{ editingField === 'gym' ? 'Guardar' : 'Editar' }}
+          <button type="button" (click)="onEdit('gym_id')">
+            {{ editingField === 'gym_id' ? 'Guardar' : 'Editar' }}
           </button>
         </div>
       </div>

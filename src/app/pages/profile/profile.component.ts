@@ -50,14 +50,14 @@ export class ProfileComponent implements OnInit {
     });
 
     if (user) {
-      this.form.patchValue(user);
+      this.form.patchValue({...user, gym_id: user.gym_id ?? '' });
     } else {
       const token = this.authService.getToken();
       if (token) {
         this.userService.fetchCurrentUser();
         this.userService.watchCurrentUser$().subscribe(user => {
           if (user) {
-            this.form.patchValue(user);
+            this.form.patchValue({ ...user, gym_id: user.gym_id ?? '' });
           }
         });
       }
