@@ -41,7 +41,6 @@ export class ProfileComponent implements OnInit {
   error: string | null = null;
 
   ngOnInit(): void {
-    const user = this.userService.getCurrentUser();
 
     this.gymService.getGyms().subscribe({
       next: (res) => {
@@ -49,15 +48,18 @@ export class ProfileComponent implements OnInit {
       }
     });
 
+    const user = this.userService.getCurrentUser();
+
+
     if (user) {
-      this.form.patchValue({...user, gym_id: user.gym_id ?? '' });
+      this.form.patchValue(user);
     } else {
       const token = this.authService.getToken();
       if (token) {
         this.userService.fetchCurrentUser();
         this.userService.watchCurrentUser$().subscribe(user => {
           if (user) {
-            this.form.patchValue({ ...user, gym_id: user.gym_id ?? '' });
+            this.form.patchValue(user);
           }
         });
       }
