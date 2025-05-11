@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { GymService } from '../../services/gym/gym.service';
 import { UserService } from '../../services/user/user.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   private fb = inject(FormBuilder);
+  private gymService = inject(GymService);
   private userService = inject(UserService);
   private authService = inject(AuthService);
   private router = inject(Router);
@@ -23,12 +25,14 @@ export class ProfileComponent implements OnInit {
     name: ['', Validators.required],
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    gym: [''],
+    gym_id: [''],
     age: [''],
     favorite_exercises: [''],
     goals: [''],
     hobbies: ['']
   });
+
+  gyms: any[] = [];
 
   editingField: string | null = null;
   showPasswordChange = false;
@@ -38,6 +42,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     const user = this.userService.getCurrentUser();
+
+    this.gymService.getGyms().subscribe({
+      next: (res) => {
+        this.gyms = res.gyms;
+      }
+    });
 
     if (user) {
       this.form.patchValue(user);

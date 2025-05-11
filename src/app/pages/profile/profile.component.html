@@ -12,12 +12,25 @@
     </label>
 
     <form [formGroup]="form">
-      <div class="field-row" *ngFor="let field of ['name', 'username', 'email', 'gym', 'age', 'favorite_exercises', 'goals', 'hobbies']">
+      <div class="field-row" *ngFor="let field of ['name', 'username', 'email', 'age', 'favorite_exercises', 'goals', 'hobbies']">
         <label>{{ field | titlecase }}</label>
         <div class="input-group">
           <input [formControlName]="field" [readonly]="editingField !== field" />
           <button type="button" (click)="onEdit(field)">
             {{ editingField === field ? 'Guardar' : 'Editar' }}
+          </button>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <label>Gimnasio</label>
+        <div class="input-group">
+          <select [formControlName]="'gym'" [disabled]="editingField !== 'gym'">
+            <option value="">Selecciona un gimnasio</option>
+            <option *ngFor="let gym of gyms" [value]="gym.name">{{ gym.name }}</option>
+          </select>
+          <button type="button" (click)="onEdit('gym')">
+            {{ editingField === 'gym' ? 'Guardar' : 'Editar' }}
           </button>
         </div>
       </div>
