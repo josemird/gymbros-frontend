@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { LikeService } from '../../services/like/like.service';
@@ -17,19 +17,20 @@ export class HomeComponent implements OnInit {
   private userService = inject(UserService);
   private likeService = inject(LikeService);
   private gymService = inject(GymService);
+  private elementRef = inject(ElementRef);
 
   users: any[] = [];
   filteredUsers: any[] = [];
   gyms: any[] = [];
   selectedGymId: number | null = null;
-  showFilter = false;
   loading = true;
+  showFilter = false;
 
   ngOnInit() {
     this.loading = true;
 
-      this.gymService.getGyms().subscribe({
-      next: (res) => {
+    this.gymService.getGyms().subscribe({
+      next: res => {
         this.gyms = res.gyms;
       }
     });
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
               ...user,
               liked: likedUserIds.includes(user.id)
             }));
-            this.applyFilter();
+            this.filteredUsers = [...this.users];
             this.loading = false;
           });
         },
@@ -58,16 +59,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
-    applyFilter() {
-    if (this.selectedGymId) {
-      this.filteredUsers = this.users.filter(u => u.gym?.id === this.selectedGymId);
-    } else {
-      this.filteredUsers = [...this.users];
-    }
+  toggleFilter() {
+    this.showFilter = !this.showFilter;
   }
 
   onGymChange() {
-    this.applyFilter();
+    if (this.selectedGymId) {
+      this.filteredUsers = this.users.filter(user => user.gym_id === this.selectedGymId);
+    } else {
+      this.filteredUsers = [...this.users];
+    }
   }
 
   toggleLike(user: any) {
@@ -82,4 +83,11 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  @HostListener('document:click', ['$event'])
+  handleClickOutside(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (!this.elementRef.nativeElement.contains(target)) {
+      this.showFilter = false;
+    }
+  }
 }

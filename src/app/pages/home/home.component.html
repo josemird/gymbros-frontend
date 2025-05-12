@@ -1,14 +1,16 @@
-<div class="filter-container">
-  <button class="filter-toggle" (click)="showFilter = !showFilter">
+<div class="home-header">
+  <button class="filter-button" (click)="toggleFilter()" aria-label="Filtrar por gimnasio">
     <span class="material-icons">filter_list</span>
   </button>
 
-  <select *ngIf="showFilter" [(ngModel)]="selectedGymId" (change)="onGymChange()">
-    <option [ngValue]="null">Todos</option>
-    <option *ngFor="let gym of gyms" [ngValue]="gym.id">{{ gym.name }}</option>
-  </select>
+  <div class="filter-dropdown" *ngIf="showFilter">
+    <label for="gymFilter">Filtrar por gimnasio:</label>
+    <select id="gymFilter" [(ngModel)]="selectedGymId" (change)="onGymChange()">
+      <option [ngValue]="null">Todos</option>
+      <option *ngFor="let gym of gyms" [ngValue]="gym.id">{{ gym.name }}</option>
+    </select>
+  </div>
 </div>
-
 
 <div *ngIf="!loading && filteredUsers.length > 0">
   <app-user-card
