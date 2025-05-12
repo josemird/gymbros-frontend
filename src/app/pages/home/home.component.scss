@@ -45,8 +45,8 @@
   }
 
   .material-icons {
-    transition: opacity 0.3s ease;
-    opacity: 0.7;
+    transition: opacity 0.6s ease;
+    opacity: 1;
   }
 
   .material-icons.visible {
@@ -56,7 +56,7 @@
 
 .filter-box {
   position: absolute;
-  top: 60px;
+  top: 260px;
   right: 0;
   background-color: white;
   border: 1px solid #ccc;
