@@ -61,8 +61,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  iconName = 'filter_list';
+
   toggleFilter() {
     this.showFilter = !this.showFilter;
+    this.iconName = this.showFilter ? 'close' : 'filter_list';
   }
 
   onGymChange() {
