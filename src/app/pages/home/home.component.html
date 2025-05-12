@@ -3,7 +3,7 @@
     <span class="material-icons">filter_list</span>
   </button>
 
-  <div class="filter-box" *ngIf="showFilter">
+  <div class="filter-box" *ngIf="showFilter" #filterRef>
     <label for="gymFilter">Filtrar por gimnasio:</label>
     <select id="gymFilter" [(ngModel)]="selectedGymId" (change)="onGymChange()">
       <option [ngValue]="null">Todos</option>

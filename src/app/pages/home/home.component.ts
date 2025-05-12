@@ -88,7 +88,7 @@ export class HomeComponent implements OnInit {
   @HostListener('document:click', ['$event'])
   handleClickOutside(event: MouseEvent) {
     const target = event.target as HTMLElement;
-    if (!this.elementRef.nativeElement.contains(target)) {
+    if (this.filterRef && !this.filterRef.nativeElement.contains(target)) {
       this.showFilter = false;
     }
   }
