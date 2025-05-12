@@ -1,7 +1,19 @@
-<div *ngIf="!loading && users.length > 0">
+<div class="home-header">
+  <label for="gymFilter">Filtrar por gimnasio:</label>
+  <select id="gymFilter" [(ngModel)]="selectedGymId" (change)="onGymChange()">
+    <option [ngValue]="null">Todos</option>
+    <option *ngFor="let gym of gyms" [ngValue]="gym.id">{{ gym.name }}</option>
+  </select>
+</div>
+
+<div *ngIf="!loading && filteredUsers.length > 0">
   <app-user-card
-    *ngFor="let user of users"
+    *ngFor="let user of filteredUsers"
     [user]="user"
     [onLike]="toggleLike.bind(this, user)"
   />
+</div>
+
+<div *ngIf="!loading && filteredUsers.length === 0">
+  <p>No hay usuarios para este gimnasio.</p>
 </div>
