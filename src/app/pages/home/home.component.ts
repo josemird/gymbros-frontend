@@ -92,6 +92,8 @@ export class HomeComponent implements OnInit {
     const target = event.target as HTMLElement;
     if (this.filterRef && !this.filterRef.nativeElement.contains(target)) {
       this.showFilter = false;
+      this.iconName = 'filter_list';
+
     }
   }
 }
