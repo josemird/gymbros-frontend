@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   filteredUsers: any[] = [];
   gyms: any[] = [];
   selectedGymId: number | null = null;
+  showFilter = false;
   loading = true;
 
   ngOnInit() {

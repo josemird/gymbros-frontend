@@ -8,26 +8,45 @@
   box-sizing: border-box;
 }
 
-.home-header {
+.filter-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
   width: 100%;
   max-width: 900px;
   padding: 0 1rem;
-  margin: 0 auto;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  box-sizing: border-box;
 
-  label {
-    font-weight: bold;
+  .filter-toggle {
+    background: #1abc9c;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 24px;
+
+    &:hover {
+      background: #16a085;
+    }
   }
 
   select {
+    position: absolute;
+    top: 50px;
+    left: 0;
     padding: 0.5rem;
-    font-size: 1rem;
     border-radius: 4px;
     border: 1px solid #ccc;
+    background: white;
+    z-index: 10;
+    min-width: 200px;
   }
 }
 
