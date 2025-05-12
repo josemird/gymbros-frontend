@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, OnInit, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user/user.service';
 import { LikeService } from '../../services/like/like.service';
@@ -19,9 +19,11 @@ export class HomeComponent implements OnInit {
   private gymService = inject(GymService);
   private elementRef = inject(ElementRef);
 
+  @ViewChild('filterRef') filterRef!: ElementRef;
+
   users: any[] = [];
-  filteredUsers: any[] = [];
   gyms: any[] = [];
+  filteredUsers: any[] = [];
   selectedGymId: number | null = null;
   loading = true;
   showFilter = false;
