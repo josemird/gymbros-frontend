@@ -1,6 +1,6 @@
 <div class="home-filter">
   <button class="filter-toggle" (click)="toggleFilter()">
-    <span class="material-icons" [class.visible]="showFilter">{{ iconName }}</span>
+    <span class="material-icons">{{ iconName }}</span>
   </button>
 
   <div class="filter-box" *ngIf="showFilter" #filterRef>
