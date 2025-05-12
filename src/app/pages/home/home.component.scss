@@ -42,6 +42,7 @@
   justify-content: center;
 
   &:hover {
+    transition: ease 0.3s;
     background-color: #16a085;
   }
 
