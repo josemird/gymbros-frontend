@@ -50,7 +50,7 @@
     }
 
     button {
-      background: #1abc9c;
+      background: #333;
       color: white;
       border: none;
       padding: 0.4rem 0.8rem;
@@ -58,7 +58,7 @@
       cursor: pointer;
 
       &:hover {
-        background: #1ab495;
+        background: #000000;
       }
     }
   }
@@ -70,7 +70,7 @@
   justify-content: center;
 
   .change-button {
-    background: #333;
+    background: #1abc9c;
     color: white;
     width: 100%;
     border: none;
@@ -79,7 +79,7 @@
     cursor: pointer;
 
     &:hover {
-      background: #000000;
+      background: #1ab495;
     }
   }
 
