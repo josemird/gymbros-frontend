@@ -39,20 +39,20 @@
     transition: background 0.2s ease-in-out;
 
     &:first-of-type {
-      background-color: #e74c3c;
+      background-color: #1abc9c;
       color: white;
 
       &:hover {
-        background-color: #c0392b;
+        background-color: #1ab495;
       }
     }
 
     &:last-of-type {
-      background-color: #3498db;
+      background-color: #333;
       color: white;
 
       &:hover {
-        background-color: #2980b9;
+        background-color: #000000;
       }
     }
   }
@@ -87,6 +87,11 @@
 
   button {
     width: 150px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    font-weight: 600;
   }
 
   @media (min-width: 768px) {
