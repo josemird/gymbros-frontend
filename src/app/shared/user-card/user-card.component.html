@@ -19,8 +19,12 @@
 
   <div class="button-row">
     <button class="like" (click)="onLike?.()">
-      {{ user.liked ? '🚫 Quitar' : '⭐ Fav' }}
+      <span class="material-icons-outlined">
+        {{ user.liked ? 'bookmark_remove' : 'bookmark_add' }}
+      </span>
     </button>
-    <button class="message" (click)="goToChat()">💬 Mensaje</button>
+    <button class="message" (click)="goToChat()">
+      <span class="material-icons-outlined">chat_bubble_outline</span>
+    </button>
   </div>
 </div>
