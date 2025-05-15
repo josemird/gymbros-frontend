@@ -34,14 +34,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.user = user;
     });
 
-    this.pollingSub = interval(3000).subscribe(() => {
-      this.messageService.getUnreadMessages().subscribe({
-        next: (res) => {
-          this.hasUnreadMessages = res.messages.length > 0;
-        }
+    this.isLoggedIn$.subscribe(isLogged => {
+    if (isLogged && !this.pollingSub) {
+      this.pollingSub = interval(3000).subscribe(() => {
+        this.messageService.getUnreadMessages().subscribe({
+          next: (res) => {
+            this.hasUnreadMessages = res.messages.length > 0;
+          }
+        });
       });
-    });
-  }
+    }
+  });
+}
 
   ngOnDestroy() {
     this.pollingSub?.unsubscribe();
