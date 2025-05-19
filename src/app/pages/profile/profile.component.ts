@@ -116,4 +116,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  fieldLabels: { [key: string]: string } = {
+  name: 'Nombre',
+  username: 'Usuario',
+  email: 'Correo electrónico',
+  age: 'Edad',
+  favorite_exercises: 'Ejercicios favoritos',
+  goals: 'Objetivos',
+  hobbies: 'Hobbies'
+};
+
+
 }
