@@ -46,7 +46,8 @@
 
     input {
       flex: 1;
-      padding: 0.6rem;
+      padding: 0.65rem;
+      border: 1px solid #ccc;
       border-radius: 4px;
     }
 
@@ -67,8 +68,8 @@
 
   select{
     width: 100%;
-    padding: 0.6rem;
-    border: #111110 1px solid;
+    padding: 0.65rem;
+    border: 1px solid #ccc;
     border-radius: 4px;
   }
 }
@@ -83,7 +84,7 @@
     background: #333;
     color: white;
     margin-top: 1.5rem;
-    width: 75%;
+    width: 55%;
     border: none;
     padding: 0.75rem;
     border-radius: 4px;
@@ -103,7 +104,9 @@
     font-weight: bold;
 
     input {
-      padding: 0.5rem;
+      padding: 0.65rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
 
     button {
@@ -111,7 +114,8 @@
       color: #111110;
       font-weight: bold;
       border: none;
-      padding: 0.6rem;
+      padding: 0.7rem;
+      margin-bottom: 10px;
       border-radius: 4px;
       cursor: pointer;
 
@@ -126,9 +130,9 @@
     margin-top: 1rem;
     background: #e74c3c;
     color: white;
-    width: 75%;
+    width: 55%;
     border: none;
-    padding: 0.7rem;
+    padding: 0.5rem;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
