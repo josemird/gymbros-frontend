@@ -71,12 +71,6 @@
     border: #111110 1px solid;
     border-radius: 4px;
   }
-
-    select:disabled {
-    background-color: #eee;
-    cursor: not-allowed;
-    color: #666;
-  }
 }
 
 .password-section, .delete-section {
@@ -88,7 +82,7 @@
   .change-button {
     background: #333;
     color: white;
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
     width: 75%;
     border: none;
     padding: 0.75rem;
