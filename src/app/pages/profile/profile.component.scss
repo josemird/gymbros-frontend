@@ -46,7 +46,8 @@
 
     input {
       flex: 1;
-      padding: 0.5rem;
+      padding: 0.6rem;
+      border-radius: 4px;
     }
 
     button {
@@ -63,10 +64,22 @@
       }
     }
   }
+
+  select{
+    width: 100%;
+    padding: 0.6rem;
+    border: #111110 1px solid;
+    border-radius: 4px;
+  }
+
+    select:disabled {
+    background-color: #eee;
+    cursor: not-allowed;
+    color: #666;
+  }
 }
 
-.password-section {
-  margin-top: 2rem;
+.password-section, .delete-section {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -75,14 +88,15 @@
   .change-button {
     background: #333;
     color: white;
-    width: 100%;
+    margin-top: 1.75rem;
+    width: 75%;
     border: none;
-    padding: 0.6rem;
+    padding: 0.75rem;
     border-radius: 4px;
     cursor: pointer;
 
     &:hover {
-      background: #000000;
+      background: #111110;
     }
   }
 
@@ -91,37 +105,43 @@
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    width: 50%;
+    font-weight: bold;
 
     input {
       padding: 0.5rem;
     }
 
     button {
-      background: #3498db;
-      color: white;
+      background: #44d86d;
+      color: #111110;
+      font-weight: bold;
       border: none;
       padding: 0.6rem;
       border-radius: 4px;
       cursor: pointer;
 
       &:hover {
-        background: #2980b9;
+        background: #3dc664;
       }
     }
   }
-}
 
-.delete-button {
-  margin-top: 1rem;
-  background: #e74c3c;
-  color: white;
-  width: 100%;
-  border: none;
-  padding: 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
 
-  &:hover {
-    background: #c0392b;
+  .delete-button {
+    margin-top: 1rem;
+    background: #e74c3c;
+    color: white;
+    width: 75%;
+    border: none;
+    padding: 0.7rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+
+    &:hover {
+      background: #c0392b;
+    }
   }
+
 }
