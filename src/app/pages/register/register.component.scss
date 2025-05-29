@@ -8,7 +8,7 @@
 
    .logo{
     display: flex;
-    justify-content: left;
+    justify-content: center;
     margin-bottom: 1rem;
 
     img {
@@ -19,9 +19,9 @@
 
   form {
     width: 100%;
-    max-width: 400px;
+    max-width: 425px;
     background: white;
-    padding: 2rem;
+    padding: 2.8rem;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
@@ -31,14 +31,16 @@
 
     label {
       font-weight: 600;
-      margin-bottom: 0.25rem;
     }
 
     input {
       padding: 0.75rem;
+      width: 94%;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
+            margin-top: 0.75rem;
+
     }
 
     button {
@@ -70,10 +72,10 @@
     .link {
       text-align: center;
       font-size: 0.9rem;
-      margin-top: 0.5rem;
 
       a {
-        color: #3498db;
+        color: #44d86d;
+        font-weight: bold;
         text-decoration: none;
       }
     }
