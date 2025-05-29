@@ -1,5 +1,7 @@
 <nav *ngIf="isLoggedIn$ | async" class="navbar">
-  <h1 class="logo" routerLink="/home">Gymbros</h1>
+  <a routerLink="/home" class="logo">
+    <img src="/SVG_LOGOTIPO_VERDE_GYMBROS.svg" alt="Gymbros logo"/>
+  </a>
 
   <ul class="nav-links">
     <li>
@@ -21,7 +23,7 @@
   </ul>
 
   <div class="avatar-container" (click)="toggleDropdown()" tabindex="0">
-    <img [src]="user?.photo || defaultAvatar" alt="Avatar" class="avatar" />
+    <img [src]="user?.photo || defaultAvatar" alt="Avatar" class="avatar"/>
     <div class="dropdown" *ngIf="showDropdown">
       <a routerLink="/profile">Perfil</a>
       <a (click)="logout()">Logout</a>

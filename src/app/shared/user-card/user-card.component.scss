@@ -15,7 +15,7 @@
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #1abc9c;
+    border: 2px solid #44d86d;
   }
 
   h3 {
@@ -39,20 +39,20 @@
     transition: background 0.2s ease-in-out;
 
     &:first-of-type {
-      background-color: #1abc9c;
-      color: white;
+      background-color: #44d86d;
+      color: #111110;
 
       &:hover {
-        background-color: #1ab495;
+        background-color: #3dc664;
       }
     }
 
     &:last-of-type {
-      background-color: #333;
+      background-color: #111110;
       color: white;
 
       &:hover {
-        background-color: #000000;
+        background-color: #333;
       }
     }
   }

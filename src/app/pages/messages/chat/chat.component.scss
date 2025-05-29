@@ -26,7 +26,7 @@
     height: 45px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #1abc9c;
+    border: 2px solid #44d86d;
   }
 
   .user-info {
@@ -81,15 +81,16 @@
   }
 
   button {
-    background-color: #1abc9c;
-    color: white;
+    background-color: #44d86d;
+    color: #111110;
+    font-weight: bold;
     border: none;
     padding: 0.6rem 1.2rem;
     border-radius: 4px;
     cursor: pointer;
 
     &:hover {
-      background-color: #16a085;
+      background-color: #3dc664;
     }
   }
 }

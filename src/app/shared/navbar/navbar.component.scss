@@ -2,15 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #222;
+  background: #111110;
   padding: 0.1rem 2rem;
   color: white;
   border-radius: 7px;
 
   .logo {
-    margin: 0;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 33px;
     cursor: pointer;
   }
+}
 
   .nav-links {
     display: flex;
@@ -32,7 +37,7 @@
       width: 40px;
       height: 40px;
       border-radius: 50%;
-      border: 2px solid #1abc9c;
+      border: 2px solid #44d86d;
       object-fit: cover;
     }
 
