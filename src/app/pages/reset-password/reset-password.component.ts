@@ -25,9 +25,15 @@ export class ResetPasswordComponent {
   onSubmit() {
     if (this.form.invalid) return;
 
-    this.auth.sendRecoveryCode(this.form.value.email!).subscribe({
+    const email = this.form.value.email ?? '';
+    const data = {
+      email,
+      type: 'password_reset'
+    };
+
+    this.auth.sendRecoveryCode(data).subscribe({
       next: () => {
-        localStorage.setItem('resetEmail', this.form.value.email ?? '');
+        localStorage.setItem('resetEmail', email);
         this.router.navigate(['/verify-code']);
       },
       error: () => {

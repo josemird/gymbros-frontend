@@ -69,25 +69,21 @@ export class AuthService {
     } catch {
       return null;
     }
-  }
+    }
 
-  sendRecoveryCode(email: string) {
-  return this.http.post(`${this.apiUrl}/send-code`, {
-    email,
-    type: 'password_reset'
-  });
-}
+  sendRecoveryCode(data: { email: string; type: string }) {
+    return this.http.post(`${this.apiUrl}/send-code`, data);
+  }
 
   verifyCodeAndResetPassword(data: {
     email: string;
     code: string;
     password: string;
     password_confirmation: string;
+    type: string;
   }) {
-    return this.http.post(`${this.apiUrl}/verify-code`, {
-      ...data,
-      type: 'password_reset'
-    });
+    return this.http.post(`${this.apiUrl}/verify-code`, data);
   }
+
 
 }

@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-reset-verify-code',
@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResetVerifyCodeComponent {
   private fb = inject(FormBuilder);
-  private http = inject(HttpClient);
+  private auth = inject(AuthService);
   private router = inject(Router);
 
   form = this.fb.group({
@@ -28,15 +28,15 @@ export class ResetVerifyCodeComponent {
     const email = localStorage.getItem('resetEmail');
     if (!email || this.form.invalid) return;
 
-    const payload = {
+    const data = {
       email,
-      code: this.form.value.code,
-      password: this.form.value.password,
-      password_confirmation: this.form.value.password_confirmation,
+      code: this.form.value.code ?? '',
+      password: this.form.value.password ?? '',
+      password_confirmation: this.form.value.password_confirmation ?? '',
       type: 'password_reset'
     };
 
-    this.http.post('/api/verify-code', payload).subscribe({
+    this.auth.verifyCodeAndResetPassword(data).subscribe({
       next: () => {
         localStorage.removeItem('resetEmail');
         this.router.navigate(['/login']);
