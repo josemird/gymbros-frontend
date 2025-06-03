@@ -23,19 +23,23 @@ export class ResetVerifyCodeComponent implements OnInit {
 
   mode: 'password_reset' | 'register' = 'password_reset';
   error: string = '';
-  email = '';
+  email = localStorage.getItem('resetEmail') || '';
 
   ngOnInit() {
     const storedEmail = localStorage.getItem('resetEmail');
     const storedMode = localStorage.getItem('verifyType');
 
-    if (!storedEmail || !storedMode) return;
+    if (!storedEmail || !storedMode) {
+      this.error = 'Datos faltantes. Inténtalo de nuevo.';
+      return;
+    }
 
     this.email = storedEmail;
     this.mode = storedMode as 'password_reset' | 'register';
 
     if (this.mode === 'password_reset') {
       this.form.get('password')?.setValidators([Validators.required, Validators.minLength(6)]);
+      this.form.get('password')?.updateValueAndValidity();
     }
   }
 

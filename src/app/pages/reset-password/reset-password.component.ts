@@ -25,21 +25,18 @@ export class ResetPasswordComponent {
   onSubmit() {
     if (this.form.invalid) return;
 
-    const email = this.form.value.email ?? '';
-    const data: { email: string; type: 'password_reset' } = {
-      email,
-      type: 'password_reset'
-    };
+    const email = this.form.get('email')?.value?.trim();
+    if (!email) return;
+
+    const data = { email, type: 'password_reset' as const };
+
+    localStorage.setItem('resetEmail', email);
+    localStorage.setItem('verifyType', 'password_reset');
 
     this.auth.sendCode(data).subscribe({
-      next: () => {
-        localStorage.setItem('resetEmail', email);
-        console.log('resetEmail', email);
-        this.router.navigate(['/verify-code']);
-      },
-      error: () => {
-        this.message = 'Error al enviar el código';
-      }
+      next: () => this.router.navigate(['/verify-code']),
+      error: () => this.message = 'Error al enviar el código'
     });
   }
+
 }
