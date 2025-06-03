@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-reset-verify-code',
+  selector: 'app-verify-code',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './verify-code.component.html',
