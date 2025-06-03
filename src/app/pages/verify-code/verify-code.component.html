@@ -10,16 +10,14 @@
     </div>
 
     <div>
-      <label>Nueva contraseña</label>
+      <label *ngIf="type === 'password_reset'">Nueva contraseña</label>
+      <label *ngIf="type === 'register'">Elige tu contraseña</label>
       <input type="password" formControlName="password" />
     </div>
 
-    <div>
-      <label>Repetir contraseña</label>
-      <input type="password" formControlName="password_confirmation" />
-    </div>
-
-    <button type="submit" [disabled]="form.invalid">Cambiar contraseña</button>
+    <button type="submit" [disabled]="form.invalid">
+      {{ type === 'register' ? 'Confirmar registro' : 'Cambiar contraseña' }}
+    </button>
     <p *ngIf="error">{{ error }}</p>
   </form>
 </div>

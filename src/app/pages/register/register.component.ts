@@ -28,8 +28,13 @@ export class RegisterComponent {
   onSubmit() {
     if (this.form.invalid) return;
 
-    this.auth.register(this.form.value).subscribe({
-      next: () => this.router.navigate(['/login']),
+    const data = this.form.value;
+
+    this.auth.register(data).subscribe({
+      next: () => {
+        localStorage.setItem('resetEmail', data.email ?? '');
+        this.router.navigate(['/verify-code'], { queryParams: { type: 'register' } });
+      },
       error: () => this.error = 'Error al registrar'
     });
   }

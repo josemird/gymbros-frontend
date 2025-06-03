@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -11,18 +11,27 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './verify-code.component.html',
   styleUrl: './verify-code.component.scss'
 })
-export class ResetVerifyCodeComponent {
+export class ResetVerifyCodeComponent implements OnInit {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   form = this.fb.group({
     code: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    password_confirmation: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   error: string = '';
+  type: 'password_reset' | 'register' = 'password_reset';
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['type'] === 'register') {
+        this.type = 'register';
+      }
+    });
+  }
 
   onSubmit() {
     const email = localStorage.getItem('resetEmail');
@@ -32,8 +41,7 @@ export class ResetVerifyCodeComponent {
       email,
       code: this.form.value.code ?? '',
       password: this.form.value.password ?? '',
-      password_confirmation: this.form.value.password_confirmation ?? '',
-      type: 'password_reset'
+      type: this.type
     };
 
     this.auth.verifyCodeAndResetPassword(data).subscribe({
@@ -42,7 +50,7 @@ export class ResetVerifyCodeComponent {
         this.router.navigate(['/login']);
       },
       error: () => {
-        this.error = 'Código o contraseña inválidos';
+        this.error = 'Código inválido o error en la contraseña';
       }
     });
   }
