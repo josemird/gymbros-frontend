@@ -21,21 +21,23 @@ export class ResetPasswordComponent {
   });
 
   message: string = '';
-  error: string = '';
 
   onSubmit() {
     if (this.form.invalid) return;
 
-    this.auth.sendRecoveryCode(this.form.value.email!).subscribe({
+    const email = this.form.value.email ?? '';
+    const data = {
+      email,
+      type: 'password_reset'
+    };
+
+    this.auth.sendRecoveryCode(data).subscribe({
       next: () => {
-        this.message = 'Código enviado a tu correo';
-        localStorage.setItem('verifyEmail', this.form.value.email ?? '');
-        setTimeout(() => {
-          this.router.navigate(['/verify-code'], { queryParams: { mode: 'reset' } });
-        }, 1500);
+        localStorage.setItem('resetEmail', email);
+        this.router.navigate(['/verify-code']);
       },
       error: () => {
-        this.error = 'Error al enviar el código';
+        this.message = 'Error al enviar el código';
       }
     });
   }
