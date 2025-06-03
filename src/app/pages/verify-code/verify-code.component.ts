@@ -68,8 +68,8 @@ export class ResetVerifyCodeComponent implements OnInit {
         return;
       }
 
-      const payload = JSON.parse(registerData);
-      this.auth.register(payload).subscribe({
+      const data = JSON.parse(registerData);
+      this.auth.register(data).subscribe({
         next: () => {
           localStorage.removeItem('pendingRegister');
           localStorage.removeItem('resetEmail');
