@@ -19,6 +19,8 @@
       <input type="password" formControlName="password" />
     </div>
 
+    <br>
+
     <button type="submit" [disabled]="form.invalid">
       {{ mode === 'register' ? 'Verificar registro' : 'Cambiar contraseña' }}
     </button>
