@@ -74,11 +74,11 @@ export class AuthService {
     }
     }
 
-  sendRecoveryCode(data: { email: string, type: 'password_reset' | 'register' }) {
+  sendCode(data: { email: string, type: 'password_reset' | 'register' }) {
     return this.http.post(`${this.apiUrl}/send-code`, data);
   }
 
-  verifyCodeAndResetPassword(data: any) {
+  verifyCode(data: any) {
     return this.http.post(`${this.apiUrl}/verify-code`, data);
   }
 

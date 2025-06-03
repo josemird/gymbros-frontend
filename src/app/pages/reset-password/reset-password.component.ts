@@ -31,9 +31,10 @@ export class ResetPasswordComponent {
       type: 'password_reset'
     };
 
-    this.auth.sendRecoveryCode(data).subscribe({
+    this.auth.sendCode(data).subscribe({
       next: () => {
         localStorage.setItem('resetEmail', email);
+        console.log('resetEmail', email);
         this.router.navigate(['/verify-code']);
       },
       error: () => {

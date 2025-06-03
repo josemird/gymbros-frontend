@@ -6,7 +6,7 @@
 
     <div>
       <label>Email</label>
-      <input type="text" [value]="email" readonly />
+      <input type="email" [value]="email" disabled />
     </div>
 
     <div>
@@ -19,8 +19,10 @@
       <input type="password" formControlName="password" />
     </div>
 
+    <br>
+
     <button type="submit" [disabled]="form.invalid">
-      {{ mode === 'password_reset' ? 'Cambiar contraseña' : 'Verificar registro' }}
+      {{ mode === 'register' ? 'Verificar registro' : 'Cambiar contraseña' }}
     </button>
 
     <p *ngIf="error">{{ error }}</p>

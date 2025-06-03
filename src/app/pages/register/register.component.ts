@@ -28,12 +28,14 @@ export class RegisterComponent {
   onSubmit() {
     if (this.form.invalid) return;
 
+
+
     const data = this.form.value;
     localStorage.setItem('pendingRegister', JSON.stringify(data));
     localStorage.setItem('resetEmail', data.email ?? '');
     localStorage.setItem('verifyType', 'register');
 
-    this.auth.sendRecoveryCode({ email: data.email as string, type: 'register' }).subscribe({
+    this.auth.sendCode({ email: data.email as string, type: 'register' }).subscribe({
       next: () => this.router.navigate(['/verify-code']),
       error: () => this.error = 'Error al enviar código de verificación'
     });

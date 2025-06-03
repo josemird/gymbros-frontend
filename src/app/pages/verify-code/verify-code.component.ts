@@ -50,7 +50,7 @@ export class ResetVerifyCodeComponent implements OnInit {
         type: 'password_reset'
       };
 
-      this.auth.verifyCodeAndResetPassword(data).subscribe({
+      this.auth.verifyCode(data).subscribe({
         next: () => {
           localStorage.removeItem('resetEmail');
           localStorage.removeItem('verifyType');
