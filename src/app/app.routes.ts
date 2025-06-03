@@ -8,12 +8,16 @@ const HOME_PATH = 'home';
 const PROFILE_PATH = 'profile';
 const MESSAGES_PATH = 'messages';
 const LIKES_PATH = 'likes';
+const RESET_PASSWORD_PATH = 'reset-password';
+const VERIFY_CODE_PATH = 'verify-code';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: HOME_PATH, pathMatch: 'full' },
 
   { path: LOGIN_PATH, loadComponent: () => import('./pages/login/login.component').then(m => m.LoginComponent), canActivate: [guestGuard] },
   { path: REGISTER_PATH, loadComponent: () => import('./pages/register/register.component').then(m => m.RegisterComponent), canActivate: [guestGuard] },
+  { path: RESET_PASSWORD_PATH, loadComponent: () => import('./pages/reset-password/reset-password.component').then(m => m.ResetPasswordComponent), canActivate: [guestGuard] },
+  { path: VERIFY_CODE_PATH, loadComponent: () => import('./pages/verify-code/verify-code.component').then(m => m.ResetVerifyCodeComponent), canActivate: [guestGuard] },
 
   { path: HOME_PATH, loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent), canActivate: [authGuard] },
   { path: LIKES_PATH, loadComponent: () => import('./pages/likes/likes.component').then(m => m.LikesComponent), canActivate: [authGuard] },

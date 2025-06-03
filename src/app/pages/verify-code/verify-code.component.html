@@ -1,0 +1,25 @@
+<div class="auth-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="logo">
+      <img src="/SVG_LOGOTIPO_VERDE_GYMBROS.svg" />
+    </div>
+
+    <div>
+      <label>Código</label>
+      <input type="text" formControlName="code" />
+    </div>
+
+    <div>
+      <label>Nueva contraseña</label>
+      <input type="password" formControlName="password" />
+    </div>
+
+    <div>
+      <label>Repetir contraseña</label>
+      <input type="password" formControlName="password_confirmation" />
+    </div>
+
+    <button type="submit" [disabled]="form.invalid">Cambiar contraseña</button>
+    <p *ngIf="error">{{ error }}</p>
+  </form>
+</div>

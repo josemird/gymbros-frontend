@@ -70,4 +70,13 @@ export class AuthService {
       return null;
     }
   }
+
+  sendRecoveryCode(email: string) {
+  return this.http.post(`${this.apiUrl}/auth/send-recovery-code`, { email });
+  }
+
+  verifyCodeAndResetPassword(data: { email: string; code: string; password: string }) {
+    return this.http.post(`${this.apiUrl}/auth/reset-password`, data);
+  }
+
 }
