@@ -42,24 +42,44 @@ export class ResetVerifyCodeComponent implements OnInit {
   onSubmit() {
     if (this.form.invalid) return;
 
-    const data = {
-      email: this.email,
-      code: this.form.value.code ?? '',
-      password: this.form.value.password ?? '',
-      type: this.mode
-    };
+    if (this.mode === 'password_reset') {
+      const data = {
+        email: this.email,
+        code: this.form.value.code ?? '',
+        password: this.form.value.password ?? '',
+        type: 'password_reset'
+      };
 
-    this.auth.verifyCodeAndResetPassword(data).subscribe({
-      next: () => {
-        localStorage.removeItem('resetEmail');
-        localStorage.removeItem('verifyType');
-        this.router.navigate(['/login']);
-      },
-      error: () => {
-        this.error = this.mode === 'password_reset'
-          ? 'Código inválido o error en la contraseña'
-          : 'Código inválido';
+      this.auth.verifyCodeAndResetPassword(data).subscribe({
+        next: () => {
+          localStorage.removeItem('resetEmail');
+          localStorage.removeItem('verifyType');
+          this.router.navigate(['/login']);
+        },
+        error: () => {
+          this.error = 'Código inválido o error en la contraseña';
+        }
+      });
+
+    } else if (this.mode === 'register') {
+      const registerData = localStorage.getItem('pendingRegister');
+      if (!registerData) {
+        this.error = 'Datos de registro no encontrados';
+        return;
       }
-    });
+
+      const payload = JSON.parse(registerData);
+      this.auth.register(payload).subscribe({
+        next: () => {
+          localStorage.removeItem('pendingRegister');
+          localStorage.removeItem('resetEmail');
+          localStorage.removeItem('verifyType');
+          this.router.navigate(['/login']);
+        },
+        error: () => {
+          this.error = 'Error al completar el registro';
+        }
+      });
+    }
   }
 }

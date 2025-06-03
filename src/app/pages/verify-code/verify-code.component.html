@@ -15,7 +15,7 @@
     </div>
 
     <button type="submit" [disabled]="form.invalid">
-      {{ mode === 'password_reset' ? 'Cambiar contraseña' : 'Verificar' }}
+      {{ mode === 'register' ? 'Verificar registro' : 'Cambiar contraseña' }}
     </button>
 
     <p *ngIf="error">{{ error }}</p>

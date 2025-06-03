@@ -53,6 +53,9 @@ export class AuthService {
       tap(() => {
         localStorage.removeItem(this.tokenKey);
         localStorage.removeItem('user');
+        localStorage.removeItem('resetEmail');
+        localStorage.removeItem('verifyType');
+        localStorage.removeItem('pendingRegister');
         this.isAuthenticated$.next(false);
         this.userService.setCurrentUser(null);
       })
