@@ -29,13 +29,13 @@ export class RegisterComponent {
     if (this.form.invalid) return;
 
     const data = this.form.value;
+    localStorage.setItem('pendingRegister', JSON.stringify(data));
+    localStorage.setItem('resetEmail', data.email ?? '');
+    localStorage.setItem('verifyType', 'register');
 
-    this.auth.register(data).subscribe({
-      next: () => {
-        localStorage.setItem('resetEmail', data.email ?? '');
-        this.router.navigate(['/verify-code'], { queryParams: { type: 'register' } });
-      },
-      error: () => this.error = 'Error al registrar'
+    this.auth.sendRecoveryCode({ email: data.email as string, type: 'register' }).subscribe({
+      next: () => this.router.navigate(['/verify-code']),
+      error: () => this.error = 'Error al enviar código de verificación'
     });
   }
 }

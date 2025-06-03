@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -15,42 +15,50 @@ export class ResetVerifyCodeComponent implements OnInit {
   private fb = inject(FormBuilder);
   private auth = inject(AuthService);
   private router = inject(Router);
-  private route = inject(ActivatedRoute);
 
   form = this.fb.group({
     code: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['']
   });
 
+  mode: 'password_reset' | 'register' = 'password_reset';
   error: string = '';
-  type: 'password_reset' | 'register' = 'password_reset';
+  email = '';
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['type'] === 'register') {
-        this.type = 'register';
-      }
-    });
+    const storedEmail = localStorage.getItem('resetEmail');
+    const storedMode = localStorage.getItem('verifyType');
+
+    if (!storedEmail || !storedMode) return;
+
+    this.email = storedEmail;
+    this.mode = storedMode as 'password_reset' | 'register';
+
+    if (this.mode === 'password_reset') {
+      this.form.get('password')?.setValidators([Validators.required, Validators.minLength(6)]);
+    }
   }
 
   onSubmit() {
-    const email = localStorage.getItem('resetEmail');
-    if (!email || this.form.invalid) return;
+    if (this.form.invalid) return;
 
     const data = {
-      email,
+      email: this.email,
       code: this.form.value.code ?? '',
       password: this.form.value.password ?? '',
-      type: this.type
+      type: this.mode
     };
 
     this.auth.verifyCodeAndResetPassword(data).subscribe({
       next: () => {
         localStorage.removeItem('resetEmail');
+        localStorage.removeItem('verifyType');
         this.router.navigate(['/login']);
       },
       error: () => {
-        this.error = 'Código inválido o error en la contraseña';
+        this.error = this.mode === 'password_reset'
+          ? 'Código inválido o error en la contraseña'
+          : 'Código inválido';
       }
     });
   }

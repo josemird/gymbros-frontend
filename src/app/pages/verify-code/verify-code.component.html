@@ -9,15 +9,15 @@
       <input type="text" formControlName="code" />
     </div>
 
-    <div>
-      <label *ngIf="type === 'password_reset'">Nueva contraseña</label>
-      <label *ngIf="type === 'register'">Elige tu contraseña</label>
+    <div *ngIf="mode === 'password_reset'">
+      <label>Nueva contraseña</label>
       <input type="password" formControlName="password" />
     </div>
 
     <button type="submit" [disabled]="form.invalid">
-      {{ type === 'register' ? 'Confirmar registro' : 'Cambiar contraseña' }}
+      {{ mode === 'password_reset' ? 'Cambiar contraseña' : 'Verificar' }}
     </button>
+
     <p *ngIf="error">{{ error }}</p>
   </form>
 </div>
