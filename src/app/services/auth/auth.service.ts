@@ -72,11 +72,22 @@ export class AuthService {
   }
 
   sendRecoveryCode(email: string) {
-  return this.http.post(`${this.apiUrl}/auth/send-recovery-code`, { email });
-  }
+  return this.http.post(`${this.apiUrl}/send-code`, {
+    email,
+    type: 'password_reset'
+  });
+}
 
-  verifyCodeAndResetPassword(data: { email: string; code: string; password: string }) {
-    return this.http.post(`${this.apiUrl}/auth/reset-password`, data);
+  verifyCodeAndResetPassword(data: {
+    email: string;
+    code: string;
+    password: string;
+    password_confirmation: string;
+  }) {
+    return this.http.post(`${this.apiUrl}/verify-code`, {
+      ...data,
+      type: 'password_reset'
+    });
   }
 
 }

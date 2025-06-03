@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,7 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ResetPasswordComponent {
   private fb = inject(FormBuilder);
-  private http = inject(HttpClient);
+  private auth = inject(AuthService);
   private router = inject(Router);
 
   form = this.fb.group({
@@ -22,15 +22,10 @@ export class ResetPasswordComponent {
 
   message: string = '';
 
-    onSubmit() {
+  onSubmit() {
     if (this.form.invalid) return;
 
-    const data = {
-      email: this.form.value.email,
-      type: 'password_reset'
-    };
-
-    this.http.post('/api/send-code', data).subscribe({
+    this.auth.sendRecoveryCode(this.form.value.email!).subscribe({
       next: () => {
         localStorage.setItem('resetEmail', this.form.value.email ?? '');
         this.router.navigate(['/reset-verify-code']);
@@ -40,5 +35,4 @@ export class ResetPasswordComponent {
       }
     });
   }
-
 }
