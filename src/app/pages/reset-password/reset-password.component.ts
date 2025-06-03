@@ -26,7 +26,7 @@ export class ResetPasswordComponent {
     if (this.form.invalid) return;
 
     const email = this.form.value.email ?? '';
-    const data = {
+    const data: { email: string; type: 'password_reset' } = {
       email,
       type: 'password_reset'
     };
