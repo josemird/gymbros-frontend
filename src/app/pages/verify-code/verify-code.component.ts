@@ -1,20 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../../services/auth/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-reset-verify-code',
+  selector: 'app-verify-code',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './verify-code.component.html',
   styleUrl: './verify-code.component.scss'
 })
-export class ResetVerifyCodeComponent {
+export class VerifyCodeComponent implements OnInit {
   private fb = inject(FormBuilder);
-  private auth = inject(AuthService);
+  private http = inject(HttpClient);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
   form = this.fb.group({
     code: ['', Validators.required],
@@ -23,22 +24,29 @@ export class ResetVerifyCodeComponent {
   });
 
   error: string = '';
+  mode: 'reset' | 'register' = 'reset';
+
+  ngOnInit() {
+    const query = this.route.snapshot.queryParamMap;
+    const paramMode = query.get('mode');
+    if (paramMode === 'register') this.mode = 'register';
+  }
 
   onSubmit() {
-    const email = localStorage.getItem('resetEmail');
+    const email = localStorage.getItem('verifyEmail');
     if (!email || this.form.invalid) return;
 
     const data = {
       email,
-      code: this.form.value.code ?? '',
-      password: this.form.value.password ?? '',
-      password_confirmation: this.form.value.password_confirmation ?? '',
-      type: 'password_reset'
+      code: this.form.value.code,
+      password: this.form.value.password,
+      password_confirmation: this.form.value.password_confirmation,
+      type: this.mode === 'reset' ? 'password_reset' : 'registration'
     };
 
-    this.auth.verifyCodeAndResetPassword(data).subscribe({
+    this.http.post('https://vps-ff89e3e0.vps.ovh.net/api/verify-code', data).subscribe({
       next: () => {
-        localStorage.removeItem('resetEmail');
+        localStorage.removeItem('verifyEmail');
         this.router.navigate(['/login']);
       },
       error: () => {

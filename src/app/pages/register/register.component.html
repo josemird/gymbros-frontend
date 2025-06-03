@@ -30,6 +30,9 @@
       <input type="password" formControlName="password" />
     </div>
 
+    <p *ngIf="message" class="success">{{ message }}</p>
+    <p *ngIf="error" class="error">{{ error }}</p>
+
     <br>
 
     <button type="submit" [disabled]="form.invalid">Registrarse</button>

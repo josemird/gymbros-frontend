@@ -71,8 +71,12 @@ export class AuthService {
     }
     }
 
-  sendRecoveryCode(data: { email: string; type: string }) {
-    return this.http.post(`${this.apiUrl}/send-code`, data);
+  sendRecoveryCode(email: string) {
+    return this.http.post(`${this.apiUrl}/send-code`, { email, type: 'password_reset' });
+  }
+
+  sendRegisterCode(email: string) {
+    return this.http.post(`${this.apiUrl}/send-code`, { email, type: 'registration' });
   }
 
   verifyCodeAndResetPassword(data: {

@@ -24,13 +24,22 @@ export class RegisterComponent {
   });
 
   error: string | null = null;
+  message: string = '';
 
   onSubmit() {
     if (this.form.invalid) return;
 
-    this.auth.register(this.form.value).subscribe({
-      next: () => this.router.navigate(['/login']),
-      error: () => this.error = 'Error al registrar'
+    const data = this.form.value;
+    this.auth.sendRegisterCode(data.email!).subscribe({
+      next: () => {
+        this.message = 'Código enviado al correo';
+        localStorage.setItem('verifyEmail', data.email ?? '');
+        localStorage.setItem('pendingRegistration', JSON.stringify(data));
+        setTimeout(() => {
+          this.router.navigate(['/verify-code'], { queryParams: { mode: 'register' } });
+        }, 1500);
+      },
+      error: () => this.error = 'Error al enviar el código'
     });
   }
 }
