@@ -28,7 +28,7 @@ export class ResetPasswordComponent {
     this.auth.sendRecoveryCode(this.form.value.email!).subscribe({
       next: () => {
         localStorage.setItem('resetEmail', this.form.value.email ?? '');
-        this.router.navigate(['/reset-verify-code']);
+        this.router.navigate(['/verify-code']);
       },
       error: () => {
         this.message = 'Error al enviar el código';
