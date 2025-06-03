@@ -22,13 +22,15 @@ export class ResetPasswordComponent {
 
   message: string = '';
 
-  onSubmit() {
+    onSubmit() {
     if (this.form.invalid) return;
 
-    this.http.post('/api/send-code', {
+    const data = {
       email: this.form.value.email,
       type: 'password_reset'
-    }).subscribe({
+    };
+
+    this.http.post('/api/send-code', data).subscribe({
       next: () => {
         localStorage.setItem('resetEmail', this.form.value.email ?? '');
         this.router.navigate(['/reset-verify-code']);
@@ -38,4 +40,5 @@ export class ResetPasswordComponent {
       }
     });
   }
+
 }
