@@ -17,11 +17,15 @@
   }
 }
 
-  .nav-links {
+  .nav-container{
     display: flex;
-    padding-right: 6.5rem;
+    align-items: center;
+
+    .nav-links {
+    display: flex;
+    padding-right: 2rem;
     list-style: none;
-    gap: 3rem;
+    gap: 2rem;
 
     a {
       color: white;
@@ -68,6 +72,7 @@
         }
       }
     }
+  }
   }
 
   .notification-dot {
