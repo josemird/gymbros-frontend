@@ -1,18 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient} from '@angular/common/http';
 
-import { VerifyCodeComponent } from './verify-code.component';
+import { ResetVerifyCodeComponent } from './verify-code.component';
 
 describe('VerifyCodeComponent', () => {
-  let component: VerifyCodeComponent;
-  let fixture: ComponentFixture<VerifyCodeComponent>;
+  let component: ResetVerifyCodeComponent;
+  let fixture: ComponentFixture<ResetVerifyCodeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VerifyCodeComponent]
+      imports: [ResetVerifyCodeComponent],
+      providers: [provideHttpClient()]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(VerifyCodeComponent);
+    fixture = TestBed.createComponent(ResetVerifyCodeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

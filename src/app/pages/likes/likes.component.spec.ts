@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient} from '@angular/common/http';
 
 import { LikesComponent } from './likes.component';
 
@@ -8,7 +9,8 @@ describe('LikesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LikesComponent]
+      imports: [LikesComponent],
+      providers: [provideHttpClient()],
     })
     .compileComponents();
 

@@ -17,7 +17,6 @@ export class HomeComponent implements OnInit {
   private userService = inject(UserService);
   private likeService = inject(LikeService);
   private gymService = inject(GymService);
-  private elementRef = inject(ElementRef);
 
   @ViewChild('filterRef') filterRef!: ElementRef;
 
