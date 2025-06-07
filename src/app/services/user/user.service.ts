@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
@@ -55,6 +55,15 @@ export class UserService {
     formData.append('photo', file);
 
     return this.http.post(`${this.apiUrl}/user/photo`, formData);
+  }
+
+   getAllUsernamesAndEmails(): Observable<{ username: string, email: string }[]> {
+    return this.http.get<{users: any[]}>(`${this.apiUrl}/user`).pipe(
+      map(res => {
+        const result = res.users.map(u => ({ username: u.username, email: u.email }));
+        return result;
+      })
+    );
   }
 
 }

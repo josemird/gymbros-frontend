@@ -6,7 +6,7 @@
   padding: 2rem;
   background-color: #f2f2f2;
 
-   .logo{
+  .logo {
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
@@ -39,8 +39,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
-            margin-top: 0.75rem;
-
+      margin-top: 0.75rem;
     }
 
     button {
@@ -81,14 +80,18 @@
     }
   }
 
-.success {
-  color: green;
-  font-size: 0.9rem;
-}
+  .success, .valid-icon {
+    color: green;
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding-left: 0.1rem;
+  }
 
-.error {
-  color: red;
-  font-size: 0.9rem;
-}
+  .error, .invalid-icon  {
+    color: red;
+    font-size: 0.9rem;
+    font-weight: normal;
+    padding-left: 0.1rem;
+  }
 
 }

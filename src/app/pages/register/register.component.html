@@ -7,32 +7,67 @@
     </div>
 
     <div>
-      <label>Nombre </label>
-      <br>
+      <label>Nombre</label><br>
       <input type="text" formControlName="name" />
     </div>
 
     <div>
-      <label>Nombre de usuario </label>
-      <br>
+      <label> Nombre de usuario
+        <span [ngClass]="{
+          'valid-icon': form.controls['username'].valid && form.controls['username'].touched && !usernameExists,
+          'invalid-icon': (form.controls['username'].invalid && form.controls['username'].touched) || usernameExists
+        }">
+          {{
+            form.controls['username'].valid && form.controls['username'].touched && !usernameExists
+              ? '✔'
+              : (form.controls['username'].touched && (form.controls['username'].invalid || usernameExists))
+                ? '✖'
+                : ''
+          }}
+        </span>
+      </label><br>
       <input type="text" formControlName="username" />
+      <div *ngIf="usernameExists && form.controls['username'].touched" class="error">
+        El nombre de usuario ya está en uso.
+      </div>
     </div>
 
     <div>
-      <label>Email </label>
-      <br>
+      <label> Email
+        <span [ngClass]="{
+          'valid-icon': form.controls['email'].valid && form.controls['email'].touched && !emailExists,
+          'invalid-icon': (form.controls['email'].invalid && form.controls['email'].touched) || emailExists
+        }">
+        {{
+          form.controls['email'].valid && form.controls['email'].touched && !emailExists
+            ? '✔'
+            : (form.controls['email'].touched && (form.controls['email'].invalid || emailExists))
+              ? '✖'
+              : ''
+        }}
+        </span>
+      </label><br>
       <input type="email" formControlName="email" />
+      <div *ngIf="emailExists && form.controls['email'].touched" class="error">
+        El email ya está registrado.
+      </div>
     </div>
 
     <div>
-      <label>Contraseña </label>
-      <br>
+      <label> Contraseña
+        <span [ngClass]="{
+          'valid-icon': form.controls['password'].valid && form.controls['password'].touched,
+          'invalid-icon': form.controls['password'].invalid && form.controls['password'].touched
+        }">
+        {{ form.controls['password'].valid && form.controls['password'].touched ? '✔' : form.controls['password'].touched ? '✖' : '' }}
+      </span>
+      </label><br>
       <input type="password" formControlName="password" />
     </div>
 
     <br>
 
-    <button type="submit" [disabled]="form.invalid">Registrarse</button>
+    <button type="submit" [disabled]="form.invalid || usernameExists || emailExists">Registrarse</button>
 
     <p *ngIf="error">{{ error }}</p>
 
@@ -41,7 +76,5 @@
     <div class="link">
       ¿Ya tienes cuenta? <a routerLink="/login">Inicia sesión</a>
     </div>
-
   </form>
-
 </div>
