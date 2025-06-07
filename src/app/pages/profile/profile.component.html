@@ -1,11 +1,13 @@
 <div class="profile-container">
+
   <div class="profile-card">
-    <label class="image-upload">
+    <label class="image-upload" (click)="onPhotoClick($event)">
       <img
         [src]="form.get('photo')?.value || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
         alt="Foto de perfil"
       />
       <input type="file" accept="image/*" (change)="onPhotoSelected($event)" hidden />
+      <p *ngIf="error" class="photoError">{{ error }}</p>
     </label>
 
     <form [formGroup]="form">
@@ -19,11 +21,10 @@
         </div>
       </div>
 
-
       <div class="field-row">
         <label>Gimnasio</label>
         <div class="input-group">
-          <select [formControlName]="'gym_id'" [disabled]="editingField !== 'gym_id'">
+          <select [formControlName]="'gym_id'">
             <option value="">Selecciona un gimnasio</option>
             <option *ngFor="let gym of gyms" [value]="gym.id">{{ gym.name }}</option>
           </select>
@@ -51,4 +52,5 @@
       <button class="delete-button" (click)="onDelete()">Eliminar cuenta</button>
     </div>
   </div>
+
 </div>
