@@ -14,6 +14,15 @@ describe('UserCardComponent', () => {
 
     fixture = TestBed.createComponent(UserCardComponent);
     component = fixture.componentInstance;
+
+    component.user = {
+      id: 1,
+      name: 'Test User',
+      username: 'testuser',
+      email: 'test@correo.com',
+      photo: 'test-photo.jpg',
+    };
+
     fixture.detectChanges();
   });
 
