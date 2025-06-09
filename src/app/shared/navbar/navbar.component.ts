@@ -20,13 +20,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private messageService = inject(MessageService);
 
   isLoggedIn$: Observable<boolean> = this.auth.isLoggedIn();
-
   backendUrl = 'https://vps-ff89e3e0.vps.ovh.net';
   defaultAvatar = 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg';
   user: any = null;
   showDropdown = false;
   hasUnreadMessages = false;
-
+  isScrolled = false;
   private pollingSub: Subscription | null = null;
 
   ngOnInit() {
@@ -35,17 +34,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
 
     this.isLoggedIn$.subscribe(isLogged => {
-    if (isLogged && !this.pollingSub) {
-      this.pollingSub = interval(3000).subscribe(() => {
-        this.messageService.getUnreadMessages().subscribe({
-          next: (res) => {
-            this.hasUnreadMessages = res.messages.length > 0;
-          }
+      if (isLogged && !this.pollingSub) {
+        this.pollingSub = interval(3000).subscribe(() => {
+          this.messageService.getUnreadMessages().subscribe({
+            next: (res) => {
+              this.hasUnreadMessages = res.messages.length > 0;
+            }
+          });
         });
-      });
-    }
-  });
-}
+      }
+    });
+  }
 
   ngOnDestroy() {
     this.pollingSub?.unsubscribe();
@@ -63,10 +62,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isScrolled = window.scrollY > 10;
+  }
+
   logout() {
     this.pollingSub?.unsubscribe();
     this.pollingSub = null;
-
     this.auth.logout().subscribe(() => {
       this.router.navigate(['/login']);
     });

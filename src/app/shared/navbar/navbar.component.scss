@@ -6,73 +6,87 @@
   padding: 0.1rem 2rem;
   color: white;
   border-radius: 7px;
+  position: fixed;
+  top: 0.5rem;
+  left: 0.5rem;
+  right: 0.5rem;
+  z-index: 100;
+  transition: all 0.25s ease-out;
+
+  &.scrolled {
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    padding: 0.1rem 1.2rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  }
 
   .logo {
-  display: flex;
-  align-items: center;
-
-  img {
-    height: 33px;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    img {
+      height: 33px;
+      cursor: pointer;
+    }
   }
-}
 
-  .nav-container{
+  .nav-container {
     display: flex;
     align-items: center;
 
     .nav-links {
-    display: flex;
-    padding-right: 2rem;
-    list-style: none;
-    gap: 2rem;
-
-    a {
-      color: white;
-      text-decoration: none;
-    }
-  }
-
-  .avatar-container {
-    position: relative;
-    cursor: pointer;
-
-    .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      border: 2px solid #44d86d;
-      object-fit: cover;
-    }
-
-    .dropdown {
-      position: absolute;
-      top: 50px;
-      right: 0;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       display: flex;
-      flex-direction: column;
-      min-width: 120px;
-      z-index: 10;
+      padding-right: 2rem;
+      list-style: none;
+      gap: 2rem;
 
-      a, button {
-        padding: 0.5rem 1rem;
-        text-align: left;
-        background: none;
+      a {
+        color: white;
         text-decoration: none;
-        border: none;
-        cursor: pointer;
-        color: #333;
+      }
+    }
 
-        &:hover {
-          background: #f0f0f0;
+    .avatar-container {
+      position: relative;
+      cursor: pointer;
+
+      .avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #44d86d;
+        object-fit: cover;
+      }
+
+      .dropdown {
+        position: absolute;
+        top: 50px;
+        right: 0;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        min-width: 120px;
+        z-index: 10;
+
+        a, button {
+          padding: 0.5rem 1rem;
+          text-align: left;
+          background: none;
+          text-decoration: none;
+          border: none;
+          cursor: pointer;
+          color: #333;
+
+          &:hover {
+            background: #f0f0f0;
+          }
         }
       }
     }
-  }
   }
 
   .notification-dot {
@@ -84,6 +98,4 @@
     margin-left: 5px;
     vertical-align: middle;
   }
-
-
 }
