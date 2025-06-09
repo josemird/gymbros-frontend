@@ -20,7 +20,7 @@ describe('UserCardComponent', () => {
       name: 'Test User',
       username: 'testuser',
       email: 'test@correo.com',
-      photo: 'test-photo.jpg',
+      password: 'testpassword',
     };
 
     fixture.detectChanges();
