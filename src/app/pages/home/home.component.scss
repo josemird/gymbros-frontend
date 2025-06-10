@@ -9,7 +9,6 @@
   box-sizing: border-box;
 }
 
-
 .user-card {
   width: 100%;
   max-width: 800px;
@@ -22,7 +21,7 @@
 
 .home-filter {
   position: fixed;
-  bottom: 2rem;
+  bottom: 5rem;
   right: 0.6rem;
   z-index: 20;
   display: flex;
