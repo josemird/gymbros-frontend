@@ -26,7 +26,7 @@
     display: flex;
     align-items: center;
     img {
-      height: 33px;
+      height: 37px;
       cursor: pointer;
     }
   }
@@ -52,8 +52,8 @@
       cursor: pointer;
 
       .avatar {
-        width: 40px;
-        height: 40px;
+        width: 44px;
+        height: 44px;
         border-radius: 50%;
         border: 2px solid #44d86d;
         object-fit: cover;
@@ -91,11 +91,10 @@
 
   .notification-dot {
     display: inline-block;
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     background-color: red;
     border-radius: 50%;
-    margin-left: 5px;
     vertical-align: middle;
   }
 }
