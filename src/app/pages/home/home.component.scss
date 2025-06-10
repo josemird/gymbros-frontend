@@ -32,7 +32,7 @@
 
   opacity: 0;
 
-  animation: fadeIn -0.1s ease-in 300ms forwards;
+  animation: fadeIn -0.1s ease-in 250ms forwards;
 
 }
 
@@ -58,7 +58,7 @@
 
   opacity: 0;
 
-  animation: fadeInFilter 1s ease-in 600ms forwards;
+  animation: fadeInFilter 1s ease-in 400ms forwards;
 }
 
 @keyframes fadeInFilter {
