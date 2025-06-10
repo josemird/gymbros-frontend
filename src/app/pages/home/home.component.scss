@@ -22,7 +22,7 @@
 
 .home-filter {
   position: fixed;
-  top: 105px;
+  bottom: 2rem;
   right: 0.6rem;
   z-index: 20;
   display: flex;
@@ -35,8 +35,8 @@
   color: white;
   border: none;
   border-radius: 50%;
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
