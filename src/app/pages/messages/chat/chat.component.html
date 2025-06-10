@@ -1,6 +1,8 @@
 <div class="chat-container" *ngIf="!loading">
   <div class="chat-header" *ngIf="receiverUser">
-    <button class="back" (click)="router.navigate(['/messages'])">⬅</button>
+    <button class="back" (click)="router.navigate(['/messages'])">
+      <span class="material-icons">arrow_back</span>
+    </button>
     <img
       [src]="receiverUser.photo
       || defaultAvatar"
