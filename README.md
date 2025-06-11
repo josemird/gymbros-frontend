@@ -1,15 +1,13 @@
 # 🏋️‍♂️ Gymbros - Encuentra tu compañero ideal de gimnasio  
-<img src="https://github.com/user-attachments/assets/f87fb8a6-a9f2-47b7-8491-c599e2733b0f/PNG_LOGOTIPO_VERDE_GYMBROS" 
-     width="150" 
-     alt="Logo GymBros">
+![PNG_LOGOTIPO_VERDE_GYMBROS](https://github.com/user-attachments/assets/f87fb8a6-a9f2-47b7-8491-c599e2733b0f)
 
 
 
 ## 🚀 ¿Qué es Gymbros?  
 Gymbros es una plataforma web que te ayuda a encontrar compañeros de entrenamiento ideales según tus preferencias. Con Gymbros puedes:  
 
-✅ Buscar personas según gimnasio, edad y ejercicios favoritos.  
-✅ Guardar perfiles con "Like" para revisarlos más tarde.  
+✅ Buscar personas según gimnasio, edad, ejercicios favoritos y hobbies.  
+✅ Guardar perfiles con "Fav" para revisarlos más tarde.  
 ✅ Chatear con otros usuarios para coordinar entrenamientos.  
 ✅ Personalizar tu perfil con información relevante.  
 
@@ -17,7 +15,7 @@ Gymbros es una plataforma web que te ayuda a encontrar compañeros de entrenamie
 Gymbros está desarrollado con:  
 
 ### **Frontend:**  
-- 🔥 **Angular** (Framework para el frontend)  
+- 🔥 **Angular 19** (Framework para el frontend)  
 - 🎨 **Sass/SCSS** (Diseño responsive y estilizado)  
 
 ### **Infraestructura:**  
@@ -35,9 +33,11 @@ Gymbros está desarrollado con:
 📦 gymbros
 ├── 📁 frontend (Angular)
 │   ├── 📁 src
-│   │   ├── 📁 app (Componentes y servicios)
-│   │   ├── 📁 assets (Imágenes y estilos)
-│   │   ├── 📄 environment.ts (Configuraciones de API)
+│   │   ├── 📁 public (Imágenes y estilos)
+│   │   ├── 📁 app (Componentes, Servios, Shared)
+│   │     ├── 📁 pages (Componentes)
+│   │     ├── 📁 services (Servicios)
+│   │     ├── 📁 shared (Componentes Reurilizables)
 │   ├── 📄 angular.json
 │   ├── 📄 package.json
 │   ├── 📄 README.md
@@ -46,7 +46,7 @@ Gymbros está desarrollado con:
 
 # Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.5.
 
 ## Development server
 
