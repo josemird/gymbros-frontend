@@ -27,11 +27,11 @@ export class AppComponent implements OnInit {
   }
 
     onActivate() {
-    const el = this.pageContainer.nativeElement;
-    el.classList.add('fade-in');
-    el.addEventListener(
+    const element = this.pageContainer.nativeElement;
+    element.classList.add('fade-in');
+    element.addEventListener(
       'animationend',
-      () => el.classList.remove('fade-in'),
+      () => element.classList.remove('fade-in'),
       { once: true }
     );
   }
