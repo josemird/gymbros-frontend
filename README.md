@@ -43,8 +43,6 @@ Gymbros está desarrollado con:
 └── 📄 README.md (Este archivo)
 ```
 
-# About Angular
-
 <p align="center">
   <a href="https://angular.io" target="_blank" rel="noopener">
     <img src="https://angular.io/assets/images/logos/angular/angular.svg"
@@ -74,7 +72,7 @@ Gymbros está desarrollado con:
 </p>
 
 
-## Development server
+## About Angular - Development server
 
 To start a local development server, run:
 
