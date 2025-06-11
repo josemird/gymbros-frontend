@@ -1,4 +1,6 @@
 # 🏋️‍♂️ Gymbros - Encuentra tu compañero ideal de gimnasio  
+![PNG_LOGOTIPO_VERDE_GYMBROS](https://github.com/user-attachments/assets/f87fb8a6-a9f2-47b7-8491-c599e2733b0f)
+
 
 ## 🚀 ¿Qué es Gymbros?  
 Gymbros es una plataforma web que te ayuda a encontrar compañeros de entrenamiento ideales según tus preferencias. Con Gymbros puedes:  
