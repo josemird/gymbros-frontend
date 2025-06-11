@@ -19,8 +19,6 @@
     transform: translateY(0);
   }
 }
-
-
 .user-card {
   width: 100%;
   max-width: 800px;
@@ -46,7 +44,6 @@
     transform: translateY(0);
   }
 }
-
 .home-filter {
   position: fixed;
   bottom: 1rem;
@@ -59,17 +56,6 @@
   opacity: 0;
 
   animation: fadeInFilter 1s ease-in 400ms forwards;
-}
-
-@keyframes fadeInFilter {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 .filter-toggle {
