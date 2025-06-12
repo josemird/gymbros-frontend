@@ -16,24 +16,10 @@ export class AppComponent implements OnInit {
   private userService = inject(UserService);
   private authService = inject(AuthService);
 
-  @ViewChild('pageContainer', { static: true }) pageContainer!: ElementRef<HTMLElement>;
-
-
   ngOnInit(): void {
     const token = this.authService.getToken();
     if (token) {
       this.userService.fetchCurrentUser();
     }
   }
-
-    onActivate() {
-    const element = this.pageContainer.nativeElement;
-    element.classList.add('fade-in');
-    element.addEventListener(
-      'animationend',
-      () => element.classList.remove('fade-in'),
-      { once: true }
-    );
-  }
-
 }

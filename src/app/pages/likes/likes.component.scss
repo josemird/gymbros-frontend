@@ -8,11 +8,24 @@
   box-sizing: border-box;
 }
 
-div {
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.likes-list{
   width: 100%;
   max-width: 800px;
   padding: 0rem 1rem;
   box-sizing: border-box;
+
+  opacity: 0;
+  animation: fadeIn 200ms ease-in 200ms forwards;
 }
 
 .user-card {

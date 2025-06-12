@@ -1,5 +1,5 @@
-<div *ngIf="!loading && conversations.length > 0" class="chat-list">
-  <div *ngFor="let user of conversations" class="chat-card" (click)="openChat(user.id)">
+<div *ngIf="!loading && conversations.length > 0" class="messages-list">
+  <div *ngFor="let user of conversations" class="messages-card" (click)="openChat(user.id)">
     <img
       [src]="user.photo
       || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"

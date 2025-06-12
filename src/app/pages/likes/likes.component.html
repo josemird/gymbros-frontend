@@ -1,4 +1,4 @@
-<div *ngIf="!loading && likedUsers.length > 0">
+<div *ngIf="!loading && likedUsers.length > 0" class="likes-list">
   <app-user-card
     *ngFor="let user of likedUsers"
     [user]="user"
@@ -6,6 +6,6 @@
   />
 </div>
 
-<div *ngIf="!loading && likedUsers.length === 0">
+<div *ngIf="!loading && likedUsers.length === 0" class="likes-list">
   <p>No tienes favoritos aún.</p>
 </div>
