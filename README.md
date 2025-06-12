@@ -1,10 +1,12 @@
 # 🏋️‍♂️ Gymbros - Encuentra tu compañero ideal de gimnasio  
+![PNG_LOGOTIPO_VERDE_GYMBROS](https://github.com/user-attachments/assets/f87fb8a6-a9f2-47b7-8491-c599e2733b0f)
+
 
 ## 🚀 ¿Qué es Gymbros?  
 Gymbros es una plataforma web que te ayuda a encontrar compañeros de entrenamiento ideales según tus preferencias. Con Gymbros puedes:  
 
-✅ Buscar personas según gimnasio, edad y ejercicios favoritos.  
-✅ Guardar perfiles con "Like" para revisarlos más tarde.  
+✅ Buscar personas según gimnasio, edad, ejercicios favoritos y hobbies.  
+✅ Guardar perfiles con "Fav" para revisarlos más tarde.  
 ✅ Chatear con otros usuarios para coordinar entrenamientos.  
 ✅ Personalizar tu perfil con información relevante.  
 
@@ -12,7 +14,7 @@ Gymbros es una plataforma web que te ayuda a encontrar compañeros de entrenamie
 Gymbros está desarrollado con:  
 
 ### **Frontend:**  
-- 🔥 **Angular** (Framework para el frontend)  
+- 🔥 **Angular 19** (Framework para el frontend)  
 - 🎨 **Sass/SCSS** (Diseño responsive y estilizado)  
 
 ### **Infraestructura:**  
@@ -30,20 +32,47 @@ Gymbros está desarrollado con:
 📦 gymbros
 ├── 📁 frontend (Angular)
 │   ├── 📁 src
-│   │   ├── 📁 app (Componentes y servicios)
-│   │   ├── 📁 assets (Imágenes y estilos)
-│   │   ├── 📄 environment.ts (Configuraciones de API)
+│   │   ├── 📁 public (Imágenes y estilos)
+│   │   ├── 📁 app (Componentes, Servios, Shared)
+│   │     ├── 📁 pages (Componentes)
+│   │     ├── 📁 services (Servicios)
+│   │     ├── 📁 shared (Componentes Reurilizables)
 │   ├── 📄 angular.json
 │   ├── 📄 package.json
 │   ├── 📄 README.md
 └── 📄 README.md (Este archivo)
 ```
 
-# Frontend
+<p align="center">
+  <a href="https://angular.io" target="_blank" rel="noopener">
+    <img src="https://angular.io/assets/images/logos/angular/angular.svg"
+         width="200"
+         alt="Angular Logo">
+  </a>
+</p>
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.5.
+<p align="center">
+  <a href="https://github.com/laravel/framework/actions">
+    <img src="https://github.com/laravel/framework/workflows/tests/badge.svg" 
+      alt="Build Status">
+  </a>
+  </a>
+  <a href="https://www.npmjs.com/package/@angular/core">
+    <img src="https://img.shields.io/npm/dw/@angular/core?label=Weekly%20Downloads"
+         alt="NPM Downloads">
+  </a>
+  <a href="https://www.npmjs.com/package/@angular/core">
+    <img src="https://img.shields.io/npm/v/@angular/core?label=Latest%20Version"
+         alt="Latest Stable Version">
+  </a>
+  <a href="https://github.com/angular/angular/blob/main/LICENSE">
+    <img src="https://img.shields.io/github/license/angular/angular"
+         alt="License">
+  </a>
+</p>
 
-## Development server
+
+## About Angular - Development server
 
 To start a local development server, run:
 
@@ -84,16 +113,6 @@ To execute unit tests with the [Karma](https://karma-runner.github.io) test runn
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
 ## Additional Resources
 
