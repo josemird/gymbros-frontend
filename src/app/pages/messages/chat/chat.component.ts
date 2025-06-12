@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   loading = true;
 
   backendUrl = 'https://vps-ff89e3e0.vps.ovh.net/uploads/';
-  defaultAvatar = '/SVG_ISOTIPO_VERDE_GYMBROS.svg"';
+  defaultAvatar = '/SVG_AVATAR_FONDO_NEGRO.svg';
 
   private pollingSubscription: Subscription | null = null;
 
