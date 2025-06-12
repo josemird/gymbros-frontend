@@ -1,3 +1,5 @@
+//Descripción: Servicio de gestión de "favoritos" que permite dar y quitar "likes" a usuarios específicos para guardarlos, José Miguel Ramírez Domínguez.
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

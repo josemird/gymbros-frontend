@@ -1,3 +1,5 @@
+//Descripción: Componente de perfil que permite a los usuarios ver y editar su información personal, subir una foto de perfil, cambiar su contraseña y eliminar su cuenta, José Miguel Ramírez Domínguez.
+
 import { Component, inject, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';

@@ -1,3 +1,5 @@
+//Descripción: Componente de inicio de sesión para la aplicación que maneja la autenticación de usuarios, José Miguel Ramírez Domínguez.
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';

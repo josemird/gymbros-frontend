@@ -1,3 +1,5 @@
+//Descripción: Servicio de autenticación que maneja el inicio de sesión, registro, cierre de sesión y verificación del estado de autenticación del usuario, José Miguel Ramírez Domínguez.
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, tap } from 'rxjs';

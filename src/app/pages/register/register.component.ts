@@ -1,3 +1,5 @@
+//Descripción: Componente de registro que permite a los usuarios crear una cuenta nueva, validando la disponibilidad del nombre, nombre de usuario y el correo electrónico y contraseña, José Miguel Ramírez Domínguez.
+
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';

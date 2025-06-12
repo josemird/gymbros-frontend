@@ -1,3 +1,5 @@
+//Descripción: Componente de la barra de navegación que muestra el logo, avatar y un menú desplegable con opciones así como iconos de navegación, José Miguel Ramírez Domínguez.
+
 import { Component, inject, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';

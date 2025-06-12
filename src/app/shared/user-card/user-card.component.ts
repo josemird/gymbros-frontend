@@ -1,3 +1,5 @@
+//Descripción: Componente de tarjeta de usuario o "cards" que muestra información básica del usuario y permite navegar al chat o guardarlos, José Miguel Ramírez Domínguez.
+
 import { Component, inject, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';

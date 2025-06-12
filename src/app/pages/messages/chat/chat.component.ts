@@ -1,3 +1,5 @@
+//Descripción: Componente de chat que permite a los usuarios enviar y recibir mensajes en tiempo real, José Miguel Ramírez Domínguez.
+
 import { Component, inject, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';

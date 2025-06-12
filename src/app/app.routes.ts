@@ -1,3 +1,5 @@
+//Descripción: Configuración de rutas de la aplicación Angular que define las rutas principales y sus componentes asociados, incluyendo guards de autenticación para proteger rutas, José Miguel Ramírez Domínguez.
+
 import { Routes } from '@angular/router';
 import { authGuard } from './services/auth/auth.guard';
 import { guestGuard } from './services/auth/guest.guard';

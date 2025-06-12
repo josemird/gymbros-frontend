@@ -1,3 +1,5 @@
+//Descripción, es una lista de usuarios que han sido guardados por el usuario, José Miguel Ramírez Domínguez.
+
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LikeService } from '../../services/like/like.service';

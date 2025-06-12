@@ -1,3 +1,5 @@
+//Descripción: Componente de mensajes que muestra las conversaciones o "salas" del usuario y permite acceder a los chats individuales, José Miguel Ramírez Domínguez.
+
 import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';

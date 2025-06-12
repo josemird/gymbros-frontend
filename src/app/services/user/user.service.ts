@@ -1,3 +1,5 @@
+//Descripción: Servicio de usuario que maneja la autenticación, obtención y actualización de datos del usuario, incluyendo la carga de fotos y la gestión de contraseñas, José Miguel Ramírez Domínguez.
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject, map } from 'rxjs';

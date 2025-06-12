@@ -1,3 +1,5 @@
+//Descripción: Componente para verificar el código de restablecimiento de contraseña o registro de usuario, José Miguel Ramírez Domínguez.
+
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';

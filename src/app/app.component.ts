@@ -1,3 +1,5 @@
+//Descripción: Inicializa el user si existe un token en el localStorage, José Miguel Ramírez Domínguez.
+
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { UserService } from './services/user/user.service';
 import { AuthService } from './services/auth/auth.service';

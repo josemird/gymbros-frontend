@@ -1,3 +1,5 @@
+// Descipción: Componente de Home o Inicio que muestra la lista de usuarios y permite filtrar por gimnasio, además de gestionar los "favoritos" de los usuarios y crear conversaciones, José Miguel Ramírez Domínguez.
+
 import { Component, ElementRef, HostListener, ViewChild, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user/user.service';

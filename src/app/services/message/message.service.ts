@@ -1,3 +1,5 @@
+//Descripción: Servicio de mensajería que interactúa con la API para enviar, recibir y marcar mensajes como leídos, José Miguel Ramírez Domínguez.
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

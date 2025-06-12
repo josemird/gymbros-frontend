@@ -1,3 +1,5 @@
+//Descripción: Interceptor de autenticación que añade un token JWT a las solicitudes HTTP si está disponible, José Miguel Ramírez Domínguez.
+
 import { inject } from '@angular/core';
 import { HttpInterceptorFn } from '@angular/common/http';
 import { AuthService } from './auth.service';

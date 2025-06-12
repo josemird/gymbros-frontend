@@ -1,3 +1,5 @@
+//Descripción: Componente de restablecimiento de contraseña que permite a los usuarios solicitar un código para restablecer su contraseña, José Miguel Ramírez Domínguez.
+
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
