@@ -99,17 +99,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   onDelete(): void {
-  const confirmed = confirm('¿Estás seguro de que quieres eliminar tu cuenta?');
-  if (confirmed) {
-    this.userService.deleteCurrentUser().subscribe(() => {
-      this.authService.logout().subscribe(() => {
+    const confirmed = confirm('¿Estás seguro de que quieres eliminar tu cuenta?');
+    if (confirmed) {
+      this.userService.deleteCurrentUser().subscribe(() => {
         localStorage.clear();
-        this.router.navigate(['/login']);
+        window.location.href = '/login';
       });
-    });
+    }
   }
-}
-
 
   onPasswordChange(): void {
     if (!this.newPassword || this.newPassword !== this.confirmPassword) {
