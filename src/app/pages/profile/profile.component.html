@@ -3,7 +3,7 @@
   <div class="profile-card">
     <label class="image-upload" (click)="onPhotoClick($event)">
       <img
-        [src]="form.get('photo')?.value || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
+        [src]="form.get('photo')?.value || '/SVG_AVATAR_FONDO_NEGRO.svg'"
         alt="Foto de perfil"
       />
       <input type="file" accept="image/*" (change)="onPhotoSelected($event)" hidden />

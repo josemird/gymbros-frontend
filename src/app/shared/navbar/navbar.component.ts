@@ -21,7 +21,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   isLoggedIn$: Observable<boolean> = this.auth.isLoggedIn();
   backendUrl = 'https://vps-ff89e3e0.vps.ovh.net';
-  defaultAvatar = 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg';
+  defaultAvatar = '/SVG_AVATAR_FONDO_NEGRO.svg';
   user: any = null;
   showDropdown = false;
   hasUnreadMessages = false;

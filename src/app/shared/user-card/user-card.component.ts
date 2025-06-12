@@ -14,7 +14,7 @@ export class UserCardComponent {
   @Input() onLike?: () => void;
 
   backendUrl = 'https://vps-ff89e3e0.vps.ovh.net/uploads/';
-  defaultAvatar = 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg';
+  defaultAvatar = '/SVG_AVATAR_FONDO_NEGRO.svg';
 
   private router = inject(Router);
 

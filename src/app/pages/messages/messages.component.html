@@ -2,7 +2,7 @@
   <div *ngFor="let user of conversations" class="messages-card" (click)="openChat(user.id)">
     <img
       [src]="user.photo
-      || 'https://pentaxcenter.com/wp-content/uploads/no-user-image-square.jpg'"
+      || '/SVG_AVATAR_FONDO_NEGRO.svg'"
       alt="Avatar"
     />
     <div class="info">
