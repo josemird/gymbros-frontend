@@ -48,7 +48,7 @@
 }
 
 .filter-toggle {
-  background-color: #111110;
+  background-color: var(--button-text-color);
   color: white;
   border: none;
   border-radius: 50%;
@@ -67,14 +67,14 @@
 
   &:hover {
     transition: ease 0.3s;
-    background-color: #44d86d;
+    background-color: var(--primary-color);
   }
 }
 
 .filter-box {
   margin-top: 0.5rem;
-  background-color: white;
-  border: 1px solid #ccc;
+  background-color: var(--card-background-color);
+  border: 1px solid var(--border-color);
   padding: 0.8rem;
   border-radius: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -94,6 +94,6 @@
     width: 100%;
     padding: 0.5rem;
     border-radius: 4px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
   }
 }

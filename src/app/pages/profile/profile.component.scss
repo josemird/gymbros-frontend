@@ -21,7 +21,7 @@
 .profile-card {
   width: 100%;
   max-width: 600px;
-  background: white;
+  background: var(--card-background-color);
   padding: 1.4rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -41,13 +41,13 @@
     height: 120px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #44d86d;
+    border: 2px solid var(--primary-color);
     cursor: pointer;
   }
 }
 
 .photoError {
-  color: #e74c3c;
+  color: var(--error-color);
   text-align: center;
   margin-top: 0.7rem;
   font-size: 1rem;
@@ -70,13 +70,13 @@
     input {
       flex: 1;
       padding: 0.65rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
     }
 
     button {
-      background: #44d86d;
-      color: #111110;
+      background: var(--button-color);
+      color: var(button-text-color);
       font-weight: bold;
       border: none;
       padding: 0.4rem 0.8rem;
@@ -84,7 +84,7 @@
       cursor: pointer;
 
       &:hover {
-        background: #3dc664;
+        background: var(--button-hover-color);
       }
     }
   }
@@ -92,7 +92,7 @@
   select {
     width: 100%;
     padding: 0.65rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
   }
 }
@@ -104,8 +104,9 @@
   align-items: center;
 
   .change-button {
-    background: #333;
+    background: var(--button-secondary-color);
     color: white;
+    font-weight: bold;
     margin-top: 1.5rem;
     width: 65%;
     border: none;
@@ -114,7 +115,7 @@
     cursor: pointer;
 
     &:hover {
-      background: #111110;
+      background: var(--button-secondary-hover-color);
     }
   }
 
@@ -128,13 +129,13 @@
 
     input {
       padding: 0.65rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--border-color);
       border-radius: 4px;
     }
 
     button {
-      background: #44d86d;
-      color: #111110;
+      background: var(--button-color);
+      color: var(--button-text-color);
       font-weight: bold;
       border: none;
       padding: 0.7rem;
@@ -143,24 +144,24 @@
       cursor: pointer;
 
       &:hover {
-        background: #3dc664;
+        background: var(--button-hover-color);
       }
     }
   }
 
   .delete-button {
-    margin-top: 1rem;
-    background: #e74c3c;
+    margin-top: 1.7rem;
+    background: var(--delete-button-color);
     color: white;
-    width: 60%;
+    width: 25%;
     border: none;
-    padding: 0.5rem;
+    padding: 0.40rem;
     border-radius: 4px;
     font-weight: bold;
     cursor: pointer;
 
     &:hover {
-      background: #c0392b;
+      background: var(--delete-button-hover-color);
     }
   }
 }

@@ -10,11 +10,12 @@
   }
 }
 .chat-container {
-  background-color: white;
+  background-color: var(--card-background-color);
   max-width: 600px;
   margin: 0 auto;
   margin-top: 4.5rem;
   padding: 2rem 1rem;
+  border-radius: 0 0 0.45rem 0.45rem;
   display: flex;
   flex-direction: column;
   height: calc(100dvh - 9.5rem);
@@ -40,7 +41,7 @@
     height: 45px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid #44d86d;
+    border: 2px solid var(--primary-color);
   }
 
   .user-info {
@@ -74,12 +75,12 @@
 }
 
 .outgoing {
-  background: #d1f7d6;
+  background: var(--outgoing-msg-color);
   align-self: flex-end;
 }
 
 .incoming {
-  background: #f0f0f0;
+  background: var(--incoming-msg-color);
   align-self: flex-start;
 }
 
@@ -90,12 +91,12 @@
   input {
     flex: 1;
     padding: 0.6rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
   }
 
   button {
-    background-color: #44d86d;
+    background-color: var(--button-color);
     color: #111110;
     font-weight: bold;
     border: none;
@@ -104,7 +105,7 @@
     cursor: pointer;
 
     &:hover {
-      background-color: #3dc664;
+      background-color: var(--button-hover-color);
     }
   }
 }

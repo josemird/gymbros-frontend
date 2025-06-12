@@ -1,5 +1,5 @@
 .user-card {
-  background: white;
+  background: var(--card-background-color);
   padding: 1.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -15,17 +15,18 @@
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #44d86d;
+    border: 2px solid var(--primary-color);
   }
 
   h3 {
     margin: 0.5rem 0 0.25rem;
     font-size: 1.4rem;
+    color: var(--text-color);
   }
 
   p {
     margin: 0;
-    color: #555;
+    color: var(--text-secondary-color);
     font-size: 0.95rem;
   }
 
@@ -39,20 +40,20 @@
     transition: background 0.2s ease-in-out;
 
     &:first-of-type {
-      background-color: #44d86d;
+      background-color: var(--button-color);
       color: #111110;
 
       &:hover {
-        background-color: #3dc664;
+        background-color: var(--button-hover-color);
       }
     }
 
     &:last-of-type {
-      background-color: #111110;
-      color: white;
+      background-color: var(--button-secondary-color);
+      color: var(--button-secondary-text-color);
 
       &:hover {
-        background-color: #333;
+        background-color: var(--button-secondary-hover-color);
       }
     }
   }

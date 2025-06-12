@@ -3,7 +3,7 @@
   justify-content: center;
   padding: 2rem 0.7rem;
   margin-top: 2.5rem;
-  background-color: #f2f2f2;
+  background-color: var(--background-color);
   box-sizing: border-box;
 }
 
@@ -33,11 +33,10 @@
 }
 
 .messages-card {
-  background-color: white;
+  background-color: var(--card-background-color);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: white;
   padding: 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -45,7 +44,7 @@
   transition: background 0.2s;
 
   &:hover {
-    background: #f9f9f9;
+    background: var(--msg-hover-color);
   }
 
   img {
@@ -53,7 +52,7 @@
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
-    border: 2px solid #44d86d;
+    border: 2px solid var(--primary-color);
   }
 
   .info {
@@ -68,7 +67,7 @@
     p {
       padding-top: 0.25rem;
       margin: 0;
-      color: #888;
+      color: var(--msg-secondary-text-color);
       font-size: 0.9rem;
     }
   }
@@ -76,7 +75,7 @@
   .notification-dot {
     width: 9px;
     height: 9px;
-    background-color: red;
+    background-color: var(--notification-dot-color);
     border-radius: 50%;
     margin-left: 8px;
   }

@@ -1,9 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --primary-color: #44d86d;
+  --primary-hover-color: #3dc664;
+  --background-color: #f2f2f2;
+  --card-background-color: white;
+  --text-color: #111110;
+  --text-secondary-color: #555555;
+  --border-color: #e0e0e0;
+  --notification-dot-color: orangered;
+
+  --button-color: #44d86d;
+  --button-hover-color: #3dc664;
+  --button-secondary-color: #111110;
+  --button-secondary-hover-color: #333333;
+  --button-text-color: #111110;
+  --button-secondary-text-color: #ffffff;
+
+  --navbar-background-color: #111110;
+  --navbar-text-color: #ffffff;
+
+  --msg-hover-color: #f9f9f9;
+  --msg-secondary-text-color: #888888;
+  --incoming-msg-color: #f0f0f0;
+  --outgoing-msg-color: #d1f7d6;
+
+  --delete-button-color: #e74c3c;
+  --delete-button-hover-color: #c0392b;
+
+  --error-color: red;
+  --success-color: green;
+}
+
 * {
   font-family: 'Inter', sans-serif;
 }
 
 body {
-    background-color: #f2f2f2;
+    background-color: var(--background-color);
 }
+
+
 

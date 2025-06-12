@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #111110;
+  background: var(--navbar-background-color);
   padding: 0.1rem 2rem;
-  color: white;
-  border-radius: 7px;
+  color: var(--card-background-color);
+  border-radius: 0.45rem;
   position: fixed;
   top: 0.5rem;
   left: 0.5rem;
@@ -42,7 +42,7 @@
       gap: 2rem;
 
       a {
-        color: white;
+        color: var(--card-background-color);
         text-decoration: none;
       }
     }
@@ -55,7 +55,7 @@
         width: 44px;
         height: 44px;
         border-radius: 50%;
-        border: 2px solid #44d86d;
+        border: 2px solid var(--primary-color);
         object-fit: cover;
       }
 
@@ -63,8 +63,8 @@
         position: absolute;
         top: 50px;
         right: 0;
-        background: white;
-        border: 1px solid #ddd;
+        background: var(--card-background-color);
+        border: 1px solid var(--border-color);
         border-radius: 4px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
         display: flex;
@@ -82,7 +82,7 @@
           color: #333;
 
           &:hover {
-            background: #f0f0f0;
+            background: var(--background-color);
           }
         }
       }
@@ -93,7 +93,7 @@
     display: inline-block;
     width: 9px;
     height: 9px;
-    background-color: red;
+    background-color: var(--notification-dot-color);
     border-radius: 50%;
     vertical-align: middle;
   }
