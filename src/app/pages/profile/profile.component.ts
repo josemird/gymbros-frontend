@@ -140,7 +140,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       },
       error: err => {
         if (file.size > 6 * 1024 * 1024) {
-          this.error = 'La foto es demasiado grande, máximo 6MB';
+          this.error = 'La foto es demasiado grande, máximo 2MB';
         } else if (err?.error?.message) {
           this.error = err.error.message;
         } else {
