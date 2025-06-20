@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   private messageService = inject(MessageService);
 
   isLoggedIn$: Observable<boolean> = this.auth.isLoggedIn();
-  backendUrl = 'https://vps-ff89e3e0.vps.ovh.net';
+  backendUrl = 'https://gymbros-backend.up.railway.app';
   defaultAvatar = '/SVG_AVATAR_FONDO_NEGRO.svg';
   user: any = null;
   showDropdown = false;

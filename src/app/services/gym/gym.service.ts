@@ -11,7 +11,7 @@ export class GymService {
 
   constructor(private http: HttpClient) {}
 
-  private apiUrl = 'https://vps-ff89e3e0.vps.ovh.net/api';
+  private apiUrl = 'https://gymbros-backend.up.railway.app/api/';
 
     getGyms(): Observable<any> {
     return this.http.get(`${this.apiUrl}/gyms`);

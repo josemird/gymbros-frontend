@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   newMessage: string = '';
   loading = true;
 
-  backendUrl = 'https://vps-ff89e3e0.vps.ovh.net/uploads/';
+  backendUrl = 'https://gymbros-backend.up.railway.app/uploads/';
   defaultAvatar = '/SVG_AVATAR_FONDO_NEGRO.svg';
 
   private pollingSubscription: Subscription | null = null;

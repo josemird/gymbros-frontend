@@ -15,7 +15,7 @@ export class UserCardComponent {
   @Input() user!: any;
   @Input() onLike?: () => void;
 
-  backendUrl = 'https://vps-ff89e3e0.vps.ovh.net/uploads/';
+  backendUrl = 'https://gymbros-backend.up.railway.app/uploads/';
   defaultAvatar = '/SVG_AVATAR_FONDO_NEGRO.svg';
 
   private router = inject(Router);
