@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class LikeService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://gymbros-backend.up.railway.app/api/';
+  private apiUrl = 'https://gymbros-backend.up.railway.app/api';
 
   getLikes(): Observable<{ likes: {
     [x: string]: any; liked_user_id: number

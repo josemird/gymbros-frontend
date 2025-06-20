@@ -7,7 +7,7 @@ import { UserService } from '../user/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://gymbros-backend.up.railway.app/api/';
+  private apiUrl = 'https://gymbros-backend.up.railway.app/api';
   private tokenKey = 'token';
 
   private isAuthenticated$ = new BehaviorSubject<boolean>(false);

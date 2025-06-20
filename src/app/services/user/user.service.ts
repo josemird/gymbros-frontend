@@ -6,7 +6,7 @@ import { Observable, BehaviorSubject, map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private apiUrl = 'https://gymbros-backend.up.railway.app/api/';
+  private apiUrl = 'https://gymbros-backend.up.railway.app/api';
   private currentUser = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) {}

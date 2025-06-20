@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class MessageService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://gymbros-backend.up.railway.app/api/';
+  private apiUrl = 'https://gymbros-backend.up.railway.app/api';
 
   getMessages(): Observable<any> {
     return this.http.get(`${this.apiUrl}/message`);
